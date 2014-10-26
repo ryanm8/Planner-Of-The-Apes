@@ -1,11 +1,11 @@
 /*
- * Created by Brian Green on 2014.10.24  * 
+ * Created by Brian Green on 2014.10.25  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
 
 package com.brigreen.sessionbeanpackage;
 
-import com.brigreen.planneroftheapes.Group1;
+import com.brigreen.planneroftheapes.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +15,8 @@ import javax.persistence.PersistenceContext;
  * @author Brian
  */
 @Stateless
-public class Group1Facade extends AbstractFacade<Group1> {
-    @PersistenceContext(unitName = "com.brigreen_planneroftheapes_war_1.0PU")
+public class UserFacade extends AbstractFacade<User> {
+    @PersistenceContext(unitName = "planneroftheapesPU")
     private EntityManager em;
 
     @Override
@@ -24,8 +24,8 @@ public class Group1Facade extends AbstractFacade<Group1> {
         return em;
     }
 
-    public Group1Facade() {
-        super(Group1.class);
+    public UserFacade() {
+        super(User.class);
     }
     
 }

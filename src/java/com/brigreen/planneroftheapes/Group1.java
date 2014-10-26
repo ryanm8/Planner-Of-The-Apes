@@ -1,5 +1,5 @@
 /*
- * Created by Brian Green on 2014.10.24  * 
+ * Created by Brian Green on 2014.10.25  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
 
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Brian
  */
 @Entity
-@Table(name = "group")
+@Table(name = "group1")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Group1.findAll", query = "SELECT g FROM Group1 g"),

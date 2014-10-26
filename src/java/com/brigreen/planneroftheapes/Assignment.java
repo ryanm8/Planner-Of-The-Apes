@@ -1,5 +1,5 @@
 /*
- * Created by Brian Green on 2014.10.24  * 
+ * Created by Brian Green on 2014.10.25  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
 
@@ -51,7 +51,7 @@ public class Assignment implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Due Date")
+    @Column(name = "Due_Date")
     @Temporal(TemporalType.DATE)
     private Date dueDate;
     @Basic(optional = false)

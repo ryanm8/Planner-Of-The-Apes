@@ -1,5 +1,5 @@
 /*
- * Created by Brian Green on 2014.10.24  * 
+ * Created by Brian Green on 2014.10.25  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
 
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class DocumentsFacade extends AbstractFacade<Documents> {
-    @PersistenceContext(unitName = "com.brigreen_planneroftheapes_war_1.0PU")
+    @PersistenceContext(unitName = "planneroftheapesPU")
     private EntityManager em;
 
     @Override

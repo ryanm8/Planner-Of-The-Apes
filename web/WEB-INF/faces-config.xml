@@ -9,4 +9,31 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <lifecycle>
+        <phase-listener>
+            com.brigreen.jsfclassespackage.AuthenticationPhaseListener
+        </phase-listener>
+    </lifecycle>
+    <managed-bean>
+        <managed-bean-name>usermanager</managed-bean-name>
+        <managed-bean-class>com.brigreen.jsfclassespackage.UserManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>      
+    </managed-bean>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>create</from-outcome>
+            <to-view-id>/create.jsp</to-view-id>            
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>app-main</from-outcome>
+            <to-view-id>/welcomeJSF.jsp</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

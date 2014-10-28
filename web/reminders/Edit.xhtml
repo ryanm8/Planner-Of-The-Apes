@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RemindersEditDlg" widgetVar="RemindersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRemindersTitle}">
+            <h:form id="RemindersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{remindersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{remindersController.selected.id}" title="#{bundle.EditRemindersTitle_id}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{remindersController.selected.date}" title="#{bundle.EditRemindersTitle_date}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_text}" for="text" />
+                        <p:inputText id="text" value="#{remindersController.selected.text}" title="#{bundle.EditRemindersTitle_text}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_text}"/>
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{remindersController.selected.title}" title="#{bundle.EditRemindersTitle_title}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_title}"/>
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{remindersController.selected.email}" title="#{bundle.EditRemindersTitle_email}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_email}"/>
+                        <p:outputLabel value="#{bundle.EditRemindersLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{remindersController.selected.firstName}" title="#{bundle.EditRemindersTitle_firstName}" required="true" requiredMessage="#{bundle.EditRemindersRequiredMessage_firstName}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{remindersController.update}" value="#{bundle.Save}" update="display,:RemindersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RemindersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RemindersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -39,7 +39,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
+<html 
+      xmlns:l="http://xmlns.jcp.org/jsf/html">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSF + JPA</title>
@@ -52,5 +53,18 @@
                 <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}"/>
             </h:form>
         </f:view>
+        <!--br /-->
+        <!--l:link outcome="welcomePrimefaces" value="Primefaces welcome page" /-->
+        <br />
+        <a href="assignment/List.xhtml">Show All Assignments Items</a>
+        <br />
+        <a href="documents/List.xhtml">Show All Documents Items</a>
+        <br />
+        <a href="group1/List.xhtml">Show All Group1 Items</a>
+        <br />
+        <a href="user/List.xhtml">Show All Users Items</a>
+        <br />
+        <a href="reminders/List.xhtml">Show All Reminders</a>
+        <br />
     </body>
 </html>

@@ -34,7 +34,7 @@ CREATE TABLE `assignment` (
   `Difficulty` enum('Easy','Medium','Hard') NOT NULL,
   `Notes` varchar(127) NOT NULL,
   `Documents_id` int(11) NOT NULL,
-  `Starred` int(11) NOT NULL DEFAULT '0',
+  `Starred` binary(1) NOT NULL DEFAULT '0',
   `Type` enum('Assignment','Project','Other') NOT NULL,
   `Group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
@@ -54,7 +54,7 @@ CREATE TABLE `assignment` (
 
 LOCK TABLES `assignment` WRITE;
 /*!40000 ALTER TABLE `assignment` DISABLE KEYS */;
-INSERT INTO `assignment` VALUES (1,'2014-10-09','High','Not Started',1,'CS 1000','Easy','This Is a Test Assignment',1,0,'Assignment',2),(2,'2014-10-13','Medium','In Progress',1,'CS 4984','Medium','This is a test',2,0,'Project',1),(3,'2014-10-22','Low','Completed',2,'CS 2000','Hard','Also a test',3,0,'Assignment',1),(10,'2014-10-22','Low','Completed',2,'ENG 1000','Easy','None',4,0,'Assignment',2),(11,'2014-10-30','Medium','In Progress',3,'CS 1000','Easy','None',5,0,'Other',3),(12,'2014-10-31','High','In Progress',3,'CPE 2000','Medium','Test',6,0,'Other',3),(13,'2014-11-01','High','Completed',4,'CS 2001','Medium','Blard',7,0,'Project',4),(14,'2014-11-02','Medium','Not Started',5,'CPE 1000','Easy','I eat babies',8,0,'Project',4),(15,'2014-11-03','Low','Not Started',6,'CS 4000','Hard','Notes?',9,0,'Assignment',NULL);
+INSERT INTO `assignment` VALUES (1,'2014-10-09','High','Not Started',1,'CS 1000','Easy','This Is a Test Assignment',1,'0','Assignment',2),(2,'2014-10-13','Medium','In Progress',1,'CS 4984','Medium','This is a test',2,'0','Project',1),(3,'2014-10-22','Low','Completed',2,'CS 2000','Hard','Also a test',3,'0','Assignment',1),(10,'2014-10-22','Low','Completed',2,'ENG 1000','Easy','None',4,'0','Assignment',2),(11,'2014-10-30','Medium','In Progress',3,'CS 1000','Easy','None',5,'0','Other',3),(12,'2014-10-31','High','In Progress',3,'CPE 2000','Medium','Test',6,'0','Other',3),(13,'2014-11-01','High','Completed',4,'CS 2001','Medium','Blard',7,'0','Project',4),(14,'2014-11-02','Medium','Not Started',5,'CPE 1000','Easy','I eat babies',8,'0','Project',4),(15,'2014-11-03','Low','Not Started',6,'CS 4000','Hard','Notes?',9,'0','Assignment',NULL);
 /*!40000 ALTER TABLE `assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-28 13:21:00
+-- Dump completed on 2014-10-28 13:29:00

@@ -216,7 +216,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'bggreen','bggreen@vt.edu','password','John','Doe'),(2,'choffman','choffman@vt.edu','password','John','Doe'),(3,'derickc','derikc7@vt.edu','password','John','Doe'),(4,'ryanm8','ryanm8@vt.edu','password','John','Doe'),(5,'ryan1025','ryan1025@vt.edu','password','John','Doe'),(6,'km419','km419@vt.edu','password','John','Doe'),(7,'test','bggreen08@gmail.com','password','John','Doe');
+INSERT INTO `user` VALUES (1,'bggreen','bggreen@vt.edu','password','John','Doe'),(2,'chrisvt','chrisvt@vt.edu','password','John','Doe'),(3,'derikc7@vt.edu','derikc7@vt.edu','password','John','Doe'),(4,'ryanm8','ryanm8@vt.edu','password','John','Doe'),(5,'ryan1025','ryan1025@vt.edu','password','John','Doe'),(6,'km419','km419@vt.edu','password','John','Doe'),(7,'test','bggreen08@gmail.com','password','John','Doe');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-28 12:47:52
+-- Dump completed on 2014-10-28 13:08:52

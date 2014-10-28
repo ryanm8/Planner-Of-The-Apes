@@ -23,17 +23,15 @@
     <navigation-rule>
         <navigation-case>
             <from-outcome>login</from-outcome>
-            <to-view-id>/login.jsp</to-view-id>
-            <redirect/>
+            <to-view-id>/login.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>create</from-outcome>
-            <to-view-id>/create.jsp</to-view-id>            
+            <to-view-id>/create.xhtml</to-view-id>         
         </navigation-case>
         <navigation-case>
             <from-outcome>app-main</from-outcome>
-            <to-view-id>/welcomeJSF.jsp</to-view-id>
-            <redirect/>
+            <to-view-id>/welcome.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

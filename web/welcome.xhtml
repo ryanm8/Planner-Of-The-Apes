@@ -1,4 +1,7 @@
-<%--
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
 	/*
 	 * Copyright (c) 2010, Oracle. All rights reserved.
 	 *
@@ -28,31 +31,54 @@
 	 * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 	 * THE POSSIBILITY OF SUCH DAMAGE.
 	 */
---%>
+-->
 
-<%@page contentType="text/html"%>
-<%@page pageEncoding="UTF-8"%>
 
-<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
 <html 
-      xmlns:l="http://xmlns.jcp.org/jsf/html">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      content-type="text/html"
+      page-encoding="UTF-8" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:l="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
         <title>JSF + JPA</title>
-    </head>
+    </h:head>
     <body>
         <f:view>
             <h1><h:outputText value="JSF + JPA" /></h1>
             Welcome ${user.firstName} ${user.lastName}!  You're email is ${user.email}.
             <h:form>
                 <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}"/>
+    
             </h:form>
+            
         </f:view>
+        <p:tabView>
+        <p:tab title="Godfather Part I">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                <h:outputText
+                    value="The story begins as Don Vito Corleone..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Godfather Part II">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Godfather Part III">
+            <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+    
         <!--br /-->
         <!--l:link outcome="welcomePrimefaces" value="Primefaces welcome page" /-->
         <br />
@@ -68,3 +94,4 @@
         <br />
     </body>
 </html>
+

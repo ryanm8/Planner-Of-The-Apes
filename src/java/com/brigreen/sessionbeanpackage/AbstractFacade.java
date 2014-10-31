@@ -40,7 +40,12 @@ public abstract class AbstractFacade<T> {
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
+    
+        return getEntityManager().createQuery(cq).setParameter("AssigneeID", (java.lang.Integer) 3).getResultList();
+    }
+    
+    public List<T> findByQueryOneParam(String query, String varName, Object varValue) {
+        return getEntityManager().createQuery(query).setParameter(varName, varValue).getResultList();
     }
 
     public List<T> findRange(int[] range) {

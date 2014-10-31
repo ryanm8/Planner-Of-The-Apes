@@ -80,6 +80,20 @@ public class AssignmentController implements Serializable {
         }
         return items;
     }
+    
+    public List<Assignment> getItemsByAssignee(int assigneeId) {
+        if (items == null) {
+            items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID", "ID", assigneeId);
+        }
+        return items;
+    }
+    
+    public List<Assignment> getItemsArbitraryQuery(String query) {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
+        return items;
+    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

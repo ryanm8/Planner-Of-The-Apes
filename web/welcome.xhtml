@@ -41,13 +41,15 @@
       page-encoding="UTF-8" 
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:l="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>JSF + JPA</title>
     </h:head>
-    <body>
+                <ui:composition template="/template.xhtml">
+                    <ui:define name="body">
         <f:view>
             <h1><h:outputText value="JSF + JPA" /></h1>
             Welcome ${user.firstName} ${user.lastName}!  You're email is ${user.email}.
@@ -58,20 +60,104 @@
             
         </f:view>
         <p:tabView>
-        <p:tab title="Godfather Part I">
+        <p:tab title="Assignments">
             <h:panelGrid columns="2" cellpadding="10">
-                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                <h:outputText
-                    value="The story begins as Don Vito Corleone..." />
+                        <h:form id="AssignmentListForm">
+                            <p:panel header="#{bundle.ListAssignmentTitle}">
+                                <p:dataTable id="datalist" value="#{assignmentController.items}" var="item"
+                                             selectionMode="single" selection="#{assignmentController.selected}"
+                                             paginator="true"
+                                             rowKey="#{item.id}"
+                                             rows="10"
+                                             rowsPerPageTemplate="10,20,30,40,50"
+                                             >
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_id}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_dueDate}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.dueDate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_priority}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.priority}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_progress}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.progress}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_class1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.class1}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_difficulty}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.difficulty}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_notes}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.notes}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_starred}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.starred}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_type}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.type}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_assigneeID}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assigneeID}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_documentsid}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.documentsid}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListAssignmentTitle_groupid}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.groupid}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:form>
             </h:panelGrid>
         </p:tab>
-        <p:tab title="Godfather Part II">
+        <p:tab title="Groups">
             <h:panelGrid columns="2" cellpadding="10">
                 <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
                 <h:outputText value="Francis Ford Coppola's legendary..." />
             </h:panelGrid>
         </p:tab>
-        <p:tab title="Godfather Part III">
+        <p:tab title="Reminders">
             <h:panelGrid columns="2" cellpadding="10">
                             <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
                 <h:outputText value="After a break of more than 15 years..." />
@@ -82,7 +168,7 @@
         <!--br /-->
         <!--l:link outcome="welcomePrimefaces" value="Primefaces welcome page" /-->
         <br />
-        <a href="assignment/List.xhtml">Show All Assignments Items</a>
+       <!-- <a href="assignment/List.xhtml">Show All Assignments Items</a>-->
         <br />
         <a href="documents/List.xhtml">Show All Documents Items</a>
         <br />
@@ -92,6 +178,8 @@
         <br />
         <a href="reminders/List.xhtml">Show All Reminders</a>
         <br />
-    </body>
+                        
+                    </ui:define>
+                </ui:composition>
 </html>
 

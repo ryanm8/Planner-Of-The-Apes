@@ -83,7 +83,7 @@ public class AssignmentController implements Serializable {
     
     public List<Assignment> getItemsByAssignee(int assigneeId) {
         if (items == null) {
-            items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID", "ID", assigneeId);
+            items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID ORDER BY a.dueDate", "ID", assigneeId);
         }
         return items;
     }

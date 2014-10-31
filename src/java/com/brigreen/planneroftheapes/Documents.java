@@ -33,6 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Documents.findById", query = "SELECT d FROM Documents d WHERE d.id = :id"),
     @NamedQuery(name = "Documents.findByDocumentid", query = "SELECT d FROM Documents d WHERE d.documentid = :documentid")})
 public class Documents implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+    private Collection<Document> documentCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,6 +101,15 @@ public class Documents implements Serializable {
     @Override
     public String toString() {
         return "com.brigreen.planneroftheapes.Documents[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Document> getDocumentCollection() {
+        return documentCollection;
+    }
+
+    public void setDocumentCollection(Collection<Document> documentCollection) {
+        this.documentCollection = documentCollection;
     }
     
 }

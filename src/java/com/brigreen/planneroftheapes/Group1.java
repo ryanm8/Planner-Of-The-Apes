@@ -8,6 +8,7 @@ package com.brigreen.planneroftheapes;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Group1.findByAdmin", query = "SELECT g FROM Group1 g WHERE g.admin = :admin"),
     @NamedQuery(name = "Group1.findByName", query = "SELECT g FROM Group1 g WHERE g.name = :name")})
 public class Group1 implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+    private Collection<Groupuser> groupuserCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -154,6 +157,15 @@ public class Group1 implements Serializable {
     @Override
     public String toString() {
         return "com.brigreen.planneroftheapes.Group1[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Groupuser> getGroupuserCollection() {
+        return groupuserCollection;
+    }
+
+    public void setGroupuserCollection(Collection<Groupuser> groupuserCollection) {
+        this.groupuserCollection = groupuserCollection;
     }
     
 }

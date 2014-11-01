@@ -4,6 +4,7 @@
 .ui-layout-north {
     z-index: 20 !important;
     overflow: visible !important;;
+    margin-top:50px;
 }
 .ui-layout-north .ui-layout-unit-content {
     overflow: visible !important;
@@ -20,3 +21,11 @@
 .ui-button {
     margin-top: 10px !important;
 }
+
+#topLogo {
+    z-index: 20 !important;
+    overflow: visible !important;;
+    width: 50%;
+    margin:0 auto;
+}
+

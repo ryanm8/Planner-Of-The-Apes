@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">Create Account</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
@@ -26,11 +26,10 @@
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="index.xhtml" icon="ui-icon-home"/>
-                        <p:menuitem value="Login" outcome="/login.xhtml" icon="ui-icon-key"/>
-                        <p:submenu label="#{bundle.Maintenance}" icon="ui-icon-wrench">
-                            <p:menuitem value="Assignment" outcome="/assignment/List.xhtml" />
-                        </p:submenu>
                         <p:menuitem value="About Us" icon="ui-icon-lightbulb"/>
+                        <p:menuitem value="Login" outcome="/login.xhtml" icon="ui-icon-key"/>
+                        <p:menuitem value="Create Account" outcome="/create.xhtml" icon="ui-icon-plus"/>
+
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

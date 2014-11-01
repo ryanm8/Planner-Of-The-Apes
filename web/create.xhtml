@@ -1,84 +1,58 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-<!--
-	/*
-	 * Copyright (c) 2010, Oracle. All rights reserved.
-	 *
-	 * Redistribution and use in source and binary forms, with or without
-	 * modification, are permitted provided that the following conditions are met:
-	 *
-	 * * Redistributions of source code must retain the above copyright notice,
-	 *   this list of conditions and the following disclaimer.
-	 *
-	 * * Redistributions in binary form must reproduce the above copyright notice,
-	 *   this list of conditions and the following disclaimer in the documentation
-	 *   and/or other materials provided with the distribution.
-	 *
-	 * * Neither the name of Oracle nor the names of its contributors
-	 *   may be used to endorse or promote products derived from this software without
-	 *   specific prior written permission.
-	 *
-	 * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-	 * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-	 * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-	 * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-	 * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-	 * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-	 * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-	 * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-	 * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-	 * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
-	 * THE POSSIBILITY OF SUCH DAMAGE.
-	 */
--->
-
 <html 
-      content-type="text/html"
-      page-encoding="UTF-8" 
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">>
+    content-type="text/html"
+    page-encoding="UTF-8" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:l="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Create Account</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <title>Login</title>
     </h:head>
-    <body>
-
-    <h1>Create a New Account</h1>
-    
+    <ui:composition template="/loginTemplate.xhtml">
+        <ui:define name="body">    
     <f:view>
+        <h1><h:outputText value="Enter your information below to get started!" /></h1>
         <h:form id="create">            
             <h:panelGrid columns="3" border="0">
-                First Name: <h:inputText id="fname"       
+                <h:outputStylesheet library="css" name="accountManagement.css"></h:outputStylesheet>
+                <h2 class="mangementLabel">First Name</h2><h:inputText id="fname"       
                                          requiredMessage="*"
                                          value="#{usermanager.fname}"
-                                         required="true"/>  
+                                         required="true"
+                                         styleClass="createAccountField"/>  
                             <h:message for="create:fname" style="color: red"/>
-                Last Name: <h:inputText id="lname"  
+                            <h2 class="mangementLabel">Last Name: </h2><h:inputText id="lname"  
                                         requiredMessage="*"
                                         value="#{usermanager.lname}"
-                                        required="true"/>
+                                        required="true"
+                                        styleClass="createAccountField"/>
                            <h:message for="create:lname" style="color: red"/>
-                PID: <h:inputText id="username" 
+                <h2 class="mangementLabel">PID: </h2><h:inputText id="username" 
                                        requiredMessage="*"
                                        value="#{usermanager.username}"
-                                       required="true"/>
+                                       required="true"
+                                       styleClass="createAccountField"/>
                           <h:message for="create:username" style="color: red"/>
-                Email: <h:inputText id="email" 
+                <h2 class="mangementLabel">Email: </h2><h:inputText id="email" 
                                        requiredMessage="*"
                                        value="#{usermanager.email}"
-                                       required="true"/>
+                                       required="true"
+                                       styleClass="createAccountField"/>
                           <h:message for="create:email" style="color: red"/>
-                Password: <h:inputSecret id="password"    
+                <h2 class="mangementLabel">Password: </h2><h:inputSecret id="password"    
                                          requiredMessage="*"
                                          value="#{usermanager.password}"
-                                         required="true"/>
+                                         required="true"
+                                         styleClass="createAccountField"/>
                           <h:message for="create:password" style="color: red"/>
-                Password (verify): <h:inputSecret id="passwordv"   
+                          <h2 class="mangementLabel">Password (verify): </h2><h:inputSecret id="passwordv"   
                                                   requiredMessage="*"
                                                   value="#{usermanager.passwordv}"
-                                                  required="true"/>
+                                                  required="true"
+                                                  styleClass="createAccountField"/>
                                    <h:message for="create:passwordv" style="color: red"/>
             </h:panelGrid>
             <h:commandButton id="submit" 
@@ -87,6 +61,7 @@
             <h:messages style="color: red" globalOnly="true"/>
         </h:form>
     </f:view>
-    
-    </body>
+
+        </ui:define>
+    </ui:composition>
 </html>

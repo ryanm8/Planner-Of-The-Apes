@@ -19,22 +19,16 @@
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="150" header="#{bundle.AppName}">
                 <div id="topLogo">
-                    <h:link outcome="welcome.xhtml">
+                    <h:link outcome="index.xhtml">
                 <p:graphicImage url="#{resource['images:plannerLogo.png']}" 
                                 width="100%" height="80" alt="Planner Logo">
                 </p:graphicImage></h:link>
                 </div>
                 <h:form id="menuForm">
                     <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/welcome.xhtml" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="Assignment" outcome="/assignment/List.xhtml" />
-                            <p:menuitem value="Documents" outcome="/documents/List.xhtml" />
-                            <p:menuitem value="Group1" outcome="/group1/List.xhtml" />
-                            <p:menuitem value="User" outcome="/user/List.xhtml" />
-                            <p:menuitem value="Reminders" outcome="/reminders/List.xhtml" />
-                        </p:submenu>
-                        <p:menuitem action="#{usermanager.logout}" value="Log Out" icon="ui-icon-power"></p:menuitem>
+                        <p:menuitem value="#{bundle.Home}" outcome="index.xhtml" icon="ui-icon-home"/>
+                        <p:menuitem value="About Us" icon="ui-icon-lightbulb"/>
+                        <p:menuitem value="Login" outcome="/login.xhtml" icon="ui-icon-key"/>
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

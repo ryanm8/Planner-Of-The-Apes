@@ -41,7 +41,7 @@ public abstract class AbstractFacade<T> {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
     
-        return getEntityManager().createQuery(cq).setParameter("AssigneeID", (java.lang.Integer) 3).getResultList();
+        return getEntityManager().createQuery(cq).getResultList();
     }
     
     public List<T> findByQueryOneParam(String query, String varName, Object varValue) {

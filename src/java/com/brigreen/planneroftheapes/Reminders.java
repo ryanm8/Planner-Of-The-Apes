@@ -9,11 +9,16 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +30,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Brian
  */
+@SqlResultSetMapping(
+  name="reminder-map",
+  entities={
+    @EntityResult(
+      entityClass=Reminders.class,
+      fields={
+        @FieldResult(name="ID", column="ID"),
+        @FieldResult(name="Date", column="Date"),
+        @FieldResult(name="Text", column="Text"),
+        @FieldResult(name="Title", column="Title"),
+        @FieldResult(name="Email", column="Email"),
+        @FieldResult(name="FirstName", column="FirstName"),
+        @FieldResult(name="User_ID", column="User_ID")
+  }) }
+)
+
 @Entity
 @Table(name = "reminders")
 @XmlRootElement
@@ -37,6 +58,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reminders.findByEmail", query = "SELECT r FROM Reminders r WHERE r.email = :email"),
     @NamedQuery(name = "Reminders.findByFirstName", query = "SELECT r FROM Reminders r WHERE r.firstName = :firstName"),
     @NamedQuery(name = "Reminders.findByUserID", query = "SELECT r FROM Reminders r WHERE r.userID = :userID")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "Reminders.natfindAll", query = "SELECT * FROM reminders", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindById", query = "SELECT * FROM reminders r WHERE r.id = ?", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindByDate", query = "SELECT * FROM reminders r WHERE r.date = ?", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindByText", query = "SELECT * FROM reminders r WHERE r.text = ?", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindByTitle", query = "SELECT * FROM reminders r WHERE r.title = ?", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindByEmail", query = "SELECT * FROM reminders r WHERE r.email = ?", resultSetMapping = "reminder-map"),
+    @NamedNativeQuery(name = "Reminders.natfindByFirstName", query = "SELECT * FROM reminders r WHERE r.firstName = ?", resultSetMapping = "reminder-map")})
 public class Reminders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -158,9 +158,9 @@
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Group ID"/>
+                                                <h:outputText value="Group Name"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.groupid}"/>
+                                            <h:outputText value="#{(group1Controller.getNameFromID(item.groupid.id))}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">

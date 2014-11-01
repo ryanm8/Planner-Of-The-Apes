@@ -120,6 +120,11 @@ public class Group1Controller implements Serializable {
     public List<Group1> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public String getNameFromID(int groupId) {
+    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", groupId);
+    return myItems.get(0).getName();
+    }
 
     @FacesConverter(forClass = Group1.class)
     public static class Group1ControllerConverter implements Converter {

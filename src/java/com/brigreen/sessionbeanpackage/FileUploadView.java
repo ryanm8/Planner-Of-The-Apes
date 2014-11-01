@@ -19,7 +19,7 @@ import org.primefaces.model.UploadedFile;
 public class FileUploadView {
      
     private UploadedFile file;
-    private String path = "/var/webapp/uploads/";
+    private String path = "assignments/";
  
     public UploadedFile getFile() {
         return file;
@@ -31,8 +31,7 @@ public class FileUploadView {
      
     public void upload() throws IOException{
         if(file != null) {
-            System.out.println(path);
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
             
              try {

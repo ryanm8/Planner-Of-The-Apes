@@ -38,7 +38,7 @@ public class MailReminder {
     @Resource 
     //private TransactionManager tx;
 
-    @Schedule(dayOfWeek = "*", month = "*", hour = "22", dayOfMonth = "*", year = "*", minute = "38", second = "0", persistent = false) 
+    @Schedule(dayOfWeek = "*", month = "*", hour = "13", dayOfMonth = "*", year = "*", minute = "20", second = "0", persistent = false) 
     public void myTimer() {
         DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate1 = df1.format(new Date());

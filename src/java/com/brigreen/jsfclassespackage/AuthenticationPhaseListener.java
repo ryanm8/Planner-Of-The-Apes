@@ -30,6 +30,9 @@
 
 package com.brigreen.jsfclassespackage;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.el.ELContext;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
@@ -68,6 +71,15 @@ public class AuthenticationPhaseListener implements PhaseListener {
         FacesContext context = event.getFacesContext();
        
         if (userExists(context)) {
+            if(context.getExternalContext().getRequestPathInfo().equals("/login.xhtml"))
+            {
+                try {
+                    context.getExternalContext().redirect("welcome.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(AuthenticationPhaseListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return;
+            }
             // allow processing of the requested view
             return;
         } else {            

@@ -1,8 +1,7 @@
 /*
- * Created by Chris Hoffman on 2014.10.28  * 
- * Copyright © 2014 Chris Hoffman. All rights reserved. * 
+ * Created by Brian Green on 2014.10.31  * 
+ * Copyright © 2014 Brian Green. All rights reserved. * 
  */
-
 package com.brigreen.planneroftheapes;
 
 import java.io.Serializable;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Chris
+ * @author Brian
  */
 @Entity
 @Table(name = "reminders")
@@ -36,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reminders.findByText", query = "SELECT r FROM Reminders r WHERE r.text = :text"),
     @NamedQuery(name = "Reminders.findByTitle", query = "SELECT r FROM Reminders r WHERE r.title = :title"),
     @NamedQuery(name = "Reminders.findByEmail", query = "SELECT r FROM Reminders r WHERE r.email = :email"),
-    @NamedQuery(name = "Reminders.findByFirstName", query = "SELECT r FROM Reminders r WHERE r.firstName = :firstName")})
+    @NamedQuery(name = "Reminders.findByFirstName", query = "SELECT r FROM Reminders r WHERE r.firstName = :firstName"),
+    @NamedQuery(name = "Reminders.findByUserID", query = "SELECT r FROM Reminders r WHERE r.userID = :userID")})
 public class Reminders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -70,6 +70,10 @@ public class Reminders implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "FirstName")
     private String firstName;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "User_ID")
+    private int userID;
 
     public Reminders() {
     }
@@ -78,13 +82,14 @@ public class Reminders implements Serializable {
         this.id = id;
     }
 
-    public Reminders(Integer id, Date date, String text, String title, String email, String firstName) {
+    public Reminders(Integer id, Date date, String text, String title, String email, String firstName, int userID) {
         this.id = id;
         this.date = date;
         this.text = text;
         this.title = title;
         this.email = email;
         this.firstName = firstName;
+        this.userID = userID;
     }
 
     public Integer getId() {
@@ -133,6 +138,14 @@ public class Reminders implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     @Override

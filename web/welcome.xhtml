@@ -46,24 +46,24 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>JSF + JPA</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <title>Home</title>
     </h:head>
     <ui:composition template="/template.xhtml">
         <ui:define name="body">
             <f:view>
-                <h1><h:outputText value="JSF + JPA" /></h1>
+                <h1><h:outputText value="Welcome to the Planner of the Apes" /></h1>
                 Welcome ${user.firstName} ${user.lastName}!  You're email is ${user.email}.
-                <h:form>
-                    <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}"/>
-
+                <h:form >
+                    <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}" />
                 </h:form>
 
             </f:view>
             <p:tabView>
-            <p:tab title="Assignments">
+            <p:tab title="Personal Assignments">
                 <h:panelGrid columns="2" cellpadding="10">
-                            <h:form id="AssignmentListForm">
-                                <p:panel header="#{bundle.ListAssignmentTitle}">
+                            <h:form id="AssignmentListForm2">
+                                <p:panel header="My Assignments">
                                     <p:dataTable id="datalist" value="#{assignmentController.getItemsByAssignee(user.id)}" var="item"
                                                  selectionMode="single" selection="#{assignmentController.selected}"
                                                  paginator="true"
@@ -71,16 +71,16 @@
                                                  rows="10"
                                                  rowsPerPageTemplate="10,20,30,40,50"
                                                  >
-
+                                        
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_id}"/>
+                                                <h:outputText value="Name"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.id}"/>
+                                            <h:outputText value="#{item.assignmentName}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_dueDate}"/>
+                                                <h:outputText value="Due Date"/>
                                             </f:facet>
                                             <h:outputText value="#{item.dueDate}">
                                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -88,67 +88,175 @@
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_priority}"/>
+                                                <h:outputText value="Priority"/>
                                             </f:facet>
                                             <h:outputText value="#{item.priority}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_progress}"/>
+                                                <h:outputText value="Progress"/>
                                             </f:facet>
                                             <h:outputText value="#{item.progress}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_class1}"/>
+                                                <h:outputText value="Subject"/>
                                             </f:facet>
                                             <h:outputText value="#{item.class1}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_difficulty}"/>
+                                                <h:outputText value="Difficulty"/>
                                             </f:facet>
                                             <h:outputText value="#{item.difficulty}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_notes}"/>
+                                                <h:outputText value="Notes"/>
                                             </f:facet>
                                             <h:outputText value="#{item.notes}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_type}"/>
+                                                <h:outputText value="Type"/>
                                             </f:facet>
                                             <h:outputText value="#{item.type}"/>
                                         </p:column>
-                                        <p:column>
+                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_documentsid}"/>
+                                                <h:outputText value="Starred"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.documentsid}"/>
+                                             <h:outputText value="#{item.starred}"/>
                                         </p:column>
-                                        <p:column>
+                                         <p:column>
                                             <f:facet name="header">
-                                                <h:outputText value="#{bundle.ListAssignmentTitle_groupid}"/>
+                                                <h:outputText value="Attached Document"/>
                                             </f:facet>
-                                            <h:outputText value="#{item.groupid}"/>
+                                             <h:outputText value="#{item.documentPath}"/>
                                         </p:column>
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
                 </h:panelGrid>
             </p:tab>
-            <p:tab title="Groups">
+            <p:tab title="Group Assignments">
                 <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                    <h:outputText value="Francis Ford Coppola's legendary..." />
+                            <h:form id="AssignmentListForm">
+                                <p:panel header="My Group Assignments">
+                                    <p:dataTable id="datalist" value="#{assignmentController.getItemsByGroup(user.id)}" var="item"
+                                                 selectionMode="single" selection="#{assignmentController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.assignmentName}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Group ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.groupid}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Due Date"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dueDate}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Priority"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.priority}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Progress"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.progress}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Subject"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.class1}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Difficulty"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.difficulty}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Notes"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.notes}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Type"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.type}"/>
+                                        </p:column>
+                                         <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Starred"/>
+                                            </f:facet>
+                                             <h:outputText value="#{item.starred}"/>
+                                        </p:column>
+                                         <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Attached Document"/>
+                                            </f:facet>
+                                             <h:outputText value="#{item.documentPath}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
                 </h:panelGrid>
             </p:tab>
-            <p:tab title="Reminders">
+            <p:tab title="My Reminders">
                 <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                    <h:outputText value="After a break of more than 15 years..." />
+                            <h:form id="ReminderListForm">
+                                <p:panel header="My Reminders">
+                                    <p:dataTable id="datalist" value="#{remindersController.getItemsByAssignee(user.id)}" var="item"
+                                                 selectionMode="single" selection="#{assignmentController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Title"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.title}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Date"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.date}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Note"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.text}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
                 </h:panelGrid>
             </p:tab>
         </p:tabView>

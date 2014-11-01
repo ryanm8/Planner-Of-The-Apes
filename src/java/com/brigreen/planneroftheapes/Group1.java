@@ -1,8 +1,7 @@
 /*
- * Created by Brian Green on 2014.10.25  * 
+ * Created by Brian Green on 2014.10.31  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
-
 package com.brigreen.planneroftheapes;
 
 import java.io.Serializable;
@@ -37,7 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Group1.findById", query = "SELECT g FROM Group1 g WHERE g.id = :id"),
     @NamedQuery(name = "Group1.findByGroupUserid", query = "SELECT g FROM Group1 g WHERE g.groupUserid = :groupUserid"),
     @NamedQuery(name = "Group1.findByAdmin", query = "SELECT g FROM Group1 g WHERE g.admin = :admin"),
-    @NamedQuery(name = "Group1.findByName", query = "SELECT g FROM Group1 g WHERE g.name = :name")})
+    @NamedQuery(name = "Group1.findByName", query = "SELECT g FROM Group1 g WHERE g.name = :name"),
+    @NamedQuery(name = "Group1.findByUserID", query = "SELECT g FROM Group1 g WHERE g.userID = :userID"),
+    @NamedQuery(name = "Group1.findByGroupID", query = "SELECT g FROM Group1 g WHERE g.groupID = :groupID")})
 public class Group1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,6 +60,14 @@ public class Group1 implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "Name")
     private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "User_ID")
+    private int userID;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Group_ID")
+    private int groupID;
     @JoinTable(name = "groupuser", joinColumns = {
         @JoinColumn(name = "ID", referencedColumnName = "GroupUser_id")}, inverseJoinColumns = {
         @JoinColumn(name = "User_ID", referencedColumnName = "ID")})
@@ -74,11 +83,13 @@ public class Group1 implements Serializable {
         this.id = id;
     }
 
-    public Group1(Integer id, int groupUserid, String admin, String name) {
+    public Group1(Integer id, int groupUserid, String admin, String name, int userID, int groupID) {
         this.id = id;
         this.groupUserid = groupUserid;
         this.admin = admin;
         this.name = name;
+        this.userID = userID;
+        this.groupID = groupID;
     }
 
     public Integer getId() {
@@ -111,6 +122,22 @@ public class Group1 implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(int groupID) {
+        this.groupID = groupID;
     }
 
     @XmlTransient

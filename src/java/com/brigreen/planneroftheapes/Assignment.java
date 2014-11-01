@@ -1,8 +1,7 @@
 /*
- * Created by Brian Green on 2014.10.25  * 
+ * Created by Brian Green on 2014.10.31  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
-
 package com.brigreen.planneroftheapes;
 
 import java.io.Serializable;
@@ -14,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -41,7 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Assignment.findByClass1", query = "SELECT a FROM Assignment a WHERE a.class1 = :class1"),
     @NamedQuery(name = "Assignment.findByDifficulty", query = "SELECT a FROM Assignment a WHERE a.difficulty = :difficulty"),
     @NamedQuery(name = "Assignment.findByNotes", query = "SELECT a FROM Assignment a WHERE a.notes = :notes"),
-    @NamedQuery(name = "Assignment.findByType", query = "SELECT a FROM Assignment a WHERE a.type = :type")})
+    @NamedQuery(name = "Assignment.findByType", query = "SELECT a FROM Assignment a WHERE a.type = :type"),
+    @NamedQuery(name = "Assignment.findByDocumentPath", query = "SELECT a FROM Assignment a WHERE a.documentPath = :documentPath"),
+    @NamedQuery(name = "Assignment.findByAssignmentName", query = "SELECT a FROM Assignment a WHERE a.assignmentName = :assignmentName"),
+    @NamedQuery(name = "Assignment.findByStarred", query = "SELECT a FROM Assignment a WHERE a.starred = :starred")})
 public class Assignment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -81,19 +82,28 @@ public class Assignment implements Serializable {
     private String notes;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Column(name = "Starred")
-    private byte[] starred;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 11)
     @Column(name = "Type")
     private String type;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Document_Path")
+    private String documentPath;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Assignment_Name")
+    private String assignmentName;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Starred")
+    private int starred;
     @JoinColumn(name = "Assignee_ID", referencedColumnName = "ID")
     @ManyToOne
     private User assigneeID;
     @JoinColumn(name = "Documents_id", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Documents documentsid;
     @JoinColumn(name = "Group_id", referencedColumnName = "ID")
     @ManyToOne
@@ -106,7 +116,7 @@ public class Assignment implements Serializable {
         this.id = id;
     }
 
-    public Assignment(Integer id, Date dueDate, String priority, String progress, String class1, String difficulty, String notes, byte[] starred, String type) {
+    public Assignment(Integer id, Date dueDate, String priority, String progress, String class1, String difficulty, String notes, String type, String documentPath, String assignmentName, int starred) {
         this.id = id;
         this.dueDate = dueDate;
         this.priority = priority;
@@ -114,8 +124,10 @@ public class Assignment implements Serializable {
         this.class1 = class1;
         this.difficulty = difficulty;
         this.notes = notes;
-        this.starred = starred;
         this.type = type;
+        this.documentPath = documentPath;
+        this.assignmentName = assignmentName;
+        this.starred = starred;
     }
 
     public Integer getId() {
@@ -174,20 +186,36 @@ public class Assignment implements Serializable {
         this.notes = notes;
     }
 
-    public byte[] getStarred() {
-        return starred;
-    }
-
-    public void setStarred(byte[] starred) {
-        this.starred = starred;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDocumentPath() {
+        return documentPath;
+    }
+
+    public void setDocumentPath(String documentPath) {
+        this.documentPath = documentPath;
+    }
+
+    public String getAssignmentName() {
+        return assignmentName;
+    }
+
+    public void setAssignmentName(String assignmentName) {
+        this.assignmentName = assignmentName;
+    }
+
+    public int getStarred() {
+        return starred;
+    }
+
+    public void setStarred(int starred) {
+        this.starred = starred;
     }
 
     public User getAssigneeID() {

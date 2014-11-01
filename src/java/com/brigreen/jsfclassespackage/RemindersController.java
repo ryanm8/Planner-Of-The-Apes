@@ -121,6 +121,12 @@ public class RemindersController implements Serializable {
         return getFacade().findAll();
     }
 
+    
+    public List<Reminders> getItemsByAssignee(int assigneeId) {
+        items = getFacade().findByQueryOneParam("SELECT r FROM Reminders r WHERE r.userID LIKE :ID ORDER BY r.date", "ID", assigneeId);
+        return items;
+    }
+    
     @FacesConverter(forClass = Reminders.class)
     public static class RemindersControllerConverter implements Converter {
 

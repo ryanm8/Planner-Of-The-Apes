@@ -1,14 +1,12 @@
 /*
- * Created by Brian Green on 2014.10.25  * 
+ * Created by Brian Green on 2014.10.31  * 
  * Copyright © 2014 Brian Green. All rights reserved. * 
  */
-
 package com.brigreen.planneroftheapes;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +39,7 @@ public class Documents implements Serializable {
     private Integer id;
     @Column(name = "Document_id")
     private Integer documentid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentsid")
+    @OneToMany(mappedBy = "documentsid")
     private Collection<Assignment> assignmentCollection;
 
     public Documents() {

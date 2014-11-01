@@ -82,9 +82,12 @@ public class AssignmentController implements Serializable {
     }
     
     public List<Assignment> getItemsByAssignee(int assigneeId) {
-        if (items == null) {
-            items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID ORDER BY a.dueDate", "ID", assigneeId);
-        }
+        items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID AND a.groupid IS NULL ORDER BY a.dueDate", "ID", assigneeId);
+        return items;
+    }
+    
+    public List<Assignment> getItemsByGroup(int assigneeId) {
+        items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID  AND a.groupid IS NOT NULL ORDER BY a.groupid ASC", "ID", assigneeId);
         return items;
     }
     

@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="AssignmentListForm">
                 <p:panel header="#{bundle.ListAssignmentTitle}">
-                    <p:dataTable id="datalist" value="#{assignmentController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{assignmentController.getItems()}" var="item"
                                  selectionMode="single" selection="#{assignmentController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"
@@ -100,6 +100,24 @@
                                 <h:outputText value="#{bundle.ListAssignmentTitle_groupid}"/>
                             </f:facet>
                             <h:outputText value="#{item.groupid}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Document Path"/>
+                            </f:facet>
+                            <h:outputText value="#{item.documentPath}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAssignmentTitle_class1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.class1}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.assignmentName}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assignmentController.prepareCreate}" update=":AssignmentCreateForm" oncomplete="PF('AssignmentCreateDialog').show()"/>

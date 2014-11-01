@@ -6,6 +6,7 @@ import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
 import com.brigreen.sessionbeanpackage.Group1Facade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -121,9 +122,24 @@ public class Group1Controller implements Serializable {
         return getFacade().findAll();
     }
     
-    public String getNameFromID(int groupId) {
+    public String getGroupNameFromID(int groupId) 
+    {
     List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", groupId);
+    items = myItems;
     return myItems.get(0).getName();
+    }
+    
+    public List<Group1> getGroupInfoFromUserID(int userId) 
+    {
+    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
+    items = myItems;
+    List<Group1> groupinfo = new ArrayList<Group1>();
+    
+    for (Group1 group: myItems)
+    {
+        groupinfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", group.getGroupID()));
+    }
+    return groupinfo;
     }
 
     @FacesConverter(forClass = Group1.class)

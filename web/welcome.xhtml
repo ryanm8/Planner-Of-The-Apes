@@ -53,7 +53,7 @@
         <ui:define name="body">
             <f:view>
                 <h1><h:outputText value="Welcome to the Planner of the Apes" /></h1>
-                Welcome ${user.firstName} ${user.lastName}!  You're email is ${user.email}.
+                Welcome ${user.firstName} ${user.lastName}!  Your email is ${user.email}.
                 <h:form >
                     <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}" />
                 </h:form>
@@ -160,7 +160,7 @@
                                             <f:facet name="header">
                                                 <h:outputText value="Group Name"/>
                                             </f:facet>
-                                            <h:outputText value="#{(group1Controller.getNameFromID(item.groupid.id))}"/>
+                                            <h:outputText value="#{(group1Controller.getGroupNameFromID(item.groupid.id))}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -228,7 +228,7 @@
                             <h:form id="ReminderListForm">
                                 <p:panel header="My Reminders">
                                     <p:dataTable id="datalist" value="#{remindersController.getItemsByAssignee(user.id)}" var="item"
-                                                 selectionMode="single" selection="#{assignmentController.selected}"
+                                                 selectionMode="single" selection="#{remindersController.selected}"
                                                  paginator="true"
                                                  rowKey="#{item.id}"
                                                  rows="10"
@@ -253,6 +253,48 @@
                                             <h:outputText value="#{item.text}">
                                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                                             </h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="My Group Info">
+                <h:panelGrid columns="2" cellpadding="10">
+                            <h:form id="MyGroupListForm">
+                                <p:panel header="My Assignments">
+                                    <p:dataTable id="datalist" value="#{group1Controller.getGroupInfoFromUserID(user.id)}" var="item"
+                                                 selectionMode="single" selection="#{group1Controller.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Group Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.name}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Group Admin"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.admin}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Group Members"/>
+                                            </f:facet>
+                                            <h:outputText value="#{(userController.getUserNameFromID(item.userID))}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Group Member Info"/>
+                                            </f:facet>
+                                            <h:outputText value="#{(userController.getUserEmailFromID(item.userID))}"/>
                                         </p:column>
                                     </p:dataTable>
                                 </p:panel>

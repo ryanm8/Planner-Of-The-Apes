@@ -120,6 +120,21 @@ public class UserController implements Serializable {
     public List<User> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public String getUserNameFromID(int userId) 
+    {
+    List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
+    items = myItems;
+    return (myItems.get(0).getFirstName() + " " + myItems.get(0).getLastName()) ;
+    }
+
+    public String getUserEmailFromID(int userId) 
+    {
+    List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
+    items = myItems;
+    return (myItems.get(0).getEmail()) ;
+    }
+
 
     @FacesConverter(forClass = User.class)
     public static class UserControllerConverter implements Converter {

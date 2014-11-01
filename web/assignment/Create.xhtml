@@ -26,10 +26,14 @@
                         <p:inputText id="difficulty" value="#{assignmentController.selected.difficulty}" title="#{bundle.CreateAssignmentTitle_difficulty}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_difficulty}"/>
                         <p:outputLabel value="#{bundle.CreateAssignmentLabel_notes}" for="notes" />
                         <p:inputText id="notes" value="#{assignmentController.selected.notes}" title="#{bundle.CreateAssignmentTitle_notes}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_notes}"/>
-                        <p:outputLabel value="#{bundle.CreateAssignmentLabel_starred}" for="starred" />
-                        <p:inputTextarea rows="4" cols="30" id="starred" value="#{assignmentController.selected.starred}" title="#{bundle.CreateAssignmentTitle_starred}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_starred}"/>
                         <p:outputLabel value="#{bundle.CreateAssignmentLabel_type}" for="type" />
                         <p:inputText id="type" value="#{assignmentController.selected.type}" title="#{bundle.CreateAssignmentTitle_type}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_type}"/>
+                        <p:outputLabel value="#{bundle.CreateAssignmentLabel_documentPath}" for="documentPath" />
+                        <p:inputText id="documentPath" value="#{assignmentController.selected.documentPath}" title="#{bundle.CreateAssignmentTitle_documentPath}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_documentPath}"/>
+                        <p:outputLabel value="#{bundle.CreateAssignmentLabel_assignmentName}" for="assignmentName" />
+                        <p:inputText id="assignmentName" value="#{assignmentController.selected.assignmentName}" title="#{bundle.CreateAssignmentTitle_assignmentName}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_assignmentName}"/>
+                        <p:outputLabel value="#{bundle.CreateAssignmentLabel_starred}" for="starred" />
+                        <p:inputText id="starred" value="#{assignmentController.selected.starred}" title="#{bundle.CreateAssignmentTitle_starred}" required="true" requiredMessage="#{bundle.CreateAssignmentRequiredMessage_starred}"/>
                         <p:outputLabel value="#{bundle.CreateAssignmentLabel_assigneeID}" for="assigneeID" />
                         <p:selectOneMenu id="assigneeID" value="#{assignmentController.selected.assigneeID}" >
                             <f:selectItems value="#{userController.itemsAvailableSelectOne}"
@@ -37,7 +41,7 @@
                                            itemValue="#{assigneeIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateAssignmentLabel_documentsid}" for="documentsid" />
-                        <p:selectOneMenu id="documentsid" value="#{assignmentController.selected.documentsid}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_documentsid}">
+                        <p:selectOneMenu id="documentsid" value="#{assignmentController.selected.documentsid}" >
                             <f:selectItems value="#{documentsController.itemsAvailableSelectOne}"
                                            var="documentsidItem"
                                            itemValue="#{documentsidItem}"/>

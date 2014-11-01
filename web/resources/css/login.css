@@ -1,0 +1,22 @@
+/*
+Created by Koorosh Massoudi on 2014.11.01 
+Copyright © 2014 Koorosh Massoudi. All rights reserved.
+*/
+/* 
+    Created on : Nov 1, 2014, 4:40:48 PM
+    Author     : Koorosh
+*/
+
+.loginField {
+    border: 1px solid #c9c5ba;
+    background-color: #FFFFFF;
+    margin: 0px!important;
+    height: 30px!important;
+    width: 200px!important;
+    font-size: 2em!important;
+    color: #333333;
+}
+
+.loginLabel{
+    margin-bottom:2px;
+}

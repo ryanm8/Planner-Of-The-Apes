@@ -75,9 +75,9 @@ public class AssignmentController implements Serializable {
     }
 
     public List<Assignment> getItems() {
-        if (items == null) {
+        //if (items == null) {
             items = getFacade().findAll();
-        }
+        //}
         return items;
     }
     

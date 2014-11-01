@@ -28,13 +28,11 @@
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/welcome.xhtml" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
+                        <p:menuitem value="Login" outcome="/login.xhtml" icon="ui-icon-key"/>
+                        <p:submenu label="#{bundle.Maintenance}" icon="ui-icon-wrench">
                             <p:menuitem value="Assignment" outcome="/assignment/List.xhtml" />
-                            <p:menuitem value="Documents" outcome="/documents/List.xhtml" />
-                            <p:menuitem value="Group1" outcome="/group1/List.xhtml" />
-                            <p:menuitem value="User" outcome="/user/List.xhtml" />
-                            <p:menuitem value="Reminders" outcome="/reminders/List.xhtml" />
                         </p:submenu>
+                        <p:menuitem value="About Us" icon="ui-icon-lightbulb"/>
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

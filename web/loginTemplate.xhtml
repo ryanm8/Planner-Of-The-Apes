@@ -19,9 +19,10 @@
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="150" header="#{bundle.AppName}">
                 <div id="topLogo">
+                    <h:link outcome="index.xhtml">
                 <p:graphicImage url="#{resource['images:plannerLogo.png']}" 
                                 width="100%" height="80" alt="Planner Logo">
-                </p:graphicImage>
+                </p:graphicImage></h:link>
                 </div>
                 <h:form id="menuForm">
                     <p:menubar>

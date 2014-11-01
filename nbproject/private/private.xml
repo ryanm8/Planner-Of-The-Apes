@@ -12,8 +12,21 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Derik/Documents/NetBeansProjects/Planner-Of-The-Apes/src/java/com/brigreen/sessionbeanpackage/AbstractFacade.java</file>
-            <file>file:/C:/Users/Derik/Documents/NetBeansProjects/Planner-Of-The-Apes/src/java/com/brigreen/planneroftheapes/Assignment.java</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/index.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/assignment/List.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcome.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/reminders/List.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/documents/List.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/template.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/css/jsfcrud.css</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/js/jsfcrud.js</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/create.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/src/java/com/brigreen/jsfclassespackage/AssignmentController.java</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/login.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcomePrimefaces.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/exteriorTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/css/login.css</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

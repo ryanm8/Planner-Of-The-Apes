@@ -52,24 +52,24 @@
     <ui:composition template="/exteriorTemplate.xhtml">
         <ui:define name="body">
             <f:view contentType="text/html" >
-                <p:carousel numVisible="1" itemStyle="height:300px;width:800px;" effect="easeInStrong" headerText="Learn how our planner can help you!" style="margin-bottom:0">
-                    <p:tab title="Godfather Part I">
+                <p:carousel numVisible="1" itemStyle="height:300px;width:800px;margin:auto;" effect="easeInStrong" headerText="Our planner can help you!" style="margin-bottom:20px;">
+                    <p:tab title="Control your monkey business">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="/images/monkey-business.jpg" />
+                            <p:graphicImage height="290px" name="/images/monkey-business.jpg" />
                             <h:outputText
-                                value="The story begins as Don Vito Corleone..." />
+                                value="Do you have monkey business to do? Let us help!" />
                         </h:panelGrid>
                     </p:tab>
-                    <p:tab title="Godfather Part II">
+                    <p:tab title="Don't go bananas!">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                            <h:outputText value="Francis Ford Coppola's..." />
+                            <p:graphicImage height="290px" name="/images/bananas.jpg" />
+                            <h:outputText value="Sometimes your schedule can go bananas!" />
                         </h:panelGrid>
                     </p:tab>
-                    <p:tab title="Godfather Part III">
+                    <p:tab title="We'll guide your life">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                            <h:outputText value="After a break of more than 15 years..." />
+                            <p:graphicImage height="290px" name="/images/banana-colors.jpg" />
+                            <h:outputText value="We'll help guide you on the right path." />
                         </h:panelGrid>
                     </p:tab>
                 </p:carousel>

@@ -28,13 +28,19 @@ public class FileUploadController {
 
     public void handleFileUpload(FileUploadEvent event) {
         file = event.getFile();
+        String userPID = FacesContext.getCurrentInstance().getApplication().evaluateExpressionGet(FacesContext.getCurrentInstance(),"#{str}", String.class);
+        userPID = userPID.replace("/", "");
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String newFileName = servletContext.getRealPath("") + File.separator + "uploaded" + File.separator + file.getFileName();
+        String tempFileName = servletContext.getRealPath("") + File.separator + userPID;
+        String newFileName = servletContext.getRealPath("") + File.separator + userPID + File.separator + file.getFileName();
         System.out.println(newFileName);
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         try {
-            FileOutputStream fos = new FileOutputStream(new File(newFileName));
+            File myFile = new File(tempFileName);
+            myFile.mkdirs();
+            File actualFile = new File(newFileName);
+            FileOutputStream fos = new FileOutputStream(actualFile);
             InputStream is = file.getInputstream();
             int BUFFER_SIZE = 8192;
             byte[] buffer = new byte[BUFFER_SIZE];

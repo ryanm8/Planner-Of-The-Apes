@@ -136,7 +136,7 @@
                             </h:form>
                 </h:panelGrid>   
                 <h:form id="form" >
-                <ui:repeat var="str" value="#{request.contextPath}/resources/images/">
+                <ui:repeat var="str" value="#{user.pid}/">
                     <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  label="Choose a File to Upload" /> 
                 </ui:repeat>
                  </h:form>

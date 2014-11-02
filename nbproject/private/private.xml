@@ -12,11 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Brian/Dropbox/All%20Workspaces/Capstone%20Demos/Planner-Of-The-Apes/web/group1/List.xhtml</file>
-            <file>file:/C:/Users/Brian/Dropbox/All%20Workspaces/Capstone%20Demos/Planner-Of-The-Apes/src/java/com/brigreen/sessionbeanpackage/FileUploadController.java</file>
-            <file>file:/C:/Users/Brian/Dropbox/All%20Workspaces/Capstone%20Demos/Planner-Of-The-Apes/web/index.xhtml</file>
-            <file>file:/C:/Users/Brian/Dropbox/All%20Workspaces/Capstone%20Demos/Planner-Of-The-Apes/web/welcome.xhtml</file>
-            <file>file:/C:/Users/Brian/Dropbox/All%20Workspaces/Capstone%20Demos/Planner-Of-The-Apes/web/WEB-INF/web.xml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/assignment/View.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcome.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/index.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/template.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/loginTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/exteriorTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/createAccountTemplate.xhtml</file>
         </group>
     </open-files>
 </project-private>

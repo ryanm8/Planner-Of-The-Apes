@@ -141,51 +141,7 @@
                 </ui:repeat>
                  </h:form>
             </p:tab>
-            <p:tab title="My Reminders">
-                <h:panelGrid columns="2" cellpadding="10">
-                            <h:form id="ReminderListForm">
-                                <p:panel header="My Reminders">
-                                    <p:dataTable id="datalist" value="#{remindersController.getItemsByAssignee(user.id)}" var="item"
-                                                 selectionMode="single" selection="#{remindersController.selected}"
-                                                 paginator="true"
-                                                 rowKey="#{item.id}"
-                                                 rows="10"
-                                                 rowsPerPageTemplate="10,20,30,40,50"
-                                                 >
-                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Title"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.title}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Date"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.date}">
-                                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                                            </h:outputText>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Note"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.text}"/>
-                                        </p:column>
-                                        <f:facet name="footer">
-                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{remindersController.prepareCreate}" update=":ReminderCreateForm" oncomplete="PF('ReminderCreateDialog').show()"/>
-                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReminderViewForm" oncomplete="PF('ReminderViewDialog').show()" disabled="#{empty remindersController.selected}"/>
-                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReminderEditForm" oncomplete="PF('ReminderEditDialog').show()" disabled="#{empty remindersController.selected}"/>
-                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{remindersController.destroy}" update=":growl,datalist" disabled="#{empty remindersController.selected}"/>
-                                        </f:facet>
-                                    </p:dataTable>
-                                </p:panel>
-                            </h:form>
-             </h:panelGrid>
-            </p:tab>
-                 <p:tab title="My Group Assignments">
+            <p:tab title="Group Assignments">
                 <h:panelGrid columns="2" cellpadding="10">
                             <h:form id="AssignmentListForm">
                                 <p:panel header="My Group Assignments">
@@ -268,6 +224,50 @@
                                 </p:panel>
                             </h:form>
                 </h:panelGrid>
+            </p:tab>
+            <p:tab title="My Reminders">
+                <h:panelGrid columns="2" cellpadding="10">
+                            <h:form id="ReminderListForm">
+                                <p:panel header="My Reminders">
+                                    <p:dataTable id="datalist" value="#{remindersController.getItemsByAssignee(user.id)}" var="item"
+                                                 selectionMode="single" selection="#{remindersController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Title"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.title}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Date"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.date}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Note"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.text}"/>
+                                        </p:column>
+                                        <f:facet name="footer">
+                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{remindersController.prepareCreate}" update=":ReminderCreateForm" oncomplete="PF('ReminderCreateDialog').show()"/>
+                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReminderViewForm" oncomplete="PF('ReminderViewDialog').show()" disabled="#{empty remindersController.selected}"/>
+                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReminderEditForm" oncomplete="PF('ReminderEditDialog').show()" disabled="#{empty remindersController.selected}"/>
+                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{remindersController.destroy}" update=":growl,datalist" disabled="#{empty remindersController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+             </h:panelGrid>
             </p:tab>
             <p:tab title="My Group Info">
                 <h:panelGrid columns="2" cellpadding="10">

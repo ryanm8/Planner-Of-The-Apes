@@ -17,7 +17,7 @@
         <p:growl id="growl" life="3000" />
 
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="150" header="#{bundle.AppName}">
+            <p:layoutUnit position="north" size="150">
                 <div id="topLogo">
                     <h:link outcome="welcome.xhtml">
                 <p:graphicImage url="#{resource['images:plannerLogo.png']}" 
@@ -27,13 +27,6 @@
                 <h:form id="menuForm">
                     <p:menubar>
                         <p:menuitem value="#{bundle.Home}" outcome="/welcome.xhtml" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="Assignment" outcome="/assignment/List.xhtml" />
-                            <p:menuitem value="Documents" outcome="/documents/List.xhtml" />
-                            <p:menuitem value="Group1" outcome="/group1/List.xhtml" />
-                            <p:menuitem value="User" outcome="/user/List.xhtml" />
-                            <p:menuitem value="Reminders" outcome="/reminders/List.xhtml" />
-                        </p:submenu>
                         <p:menuitem action="#{usermanager.logout}" value="Log Out" icon="ui-icon-power"></p:menuitem>
                     </p:menubar>
                 </h:form>

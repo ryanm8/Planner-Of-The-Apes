@@ -3,6 +3,7 @@ package com.brigreen.jsfclassespackage;
 import com.brigreen.planneroftheapes.Reminders;
 import com.brigreen.jsfclassespackage.util.JsfUtil;
 import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
+import com.brigreen.planneroftheapes.User;
 import com.brigreen.sessionbeanpackage.RemindersFacade;
 
 import java.io.Serializable;
@@ -27,6 +28,7 @@ public class RemindersController implements Serializable {
     private com.brigreen.sessionbeanpackage.RemindersFacade ejbFacade;
     private List<Reminders> items = null;
     private Reminders selected;
+    private User user;
 
     public RemindersController() {
     }
@@ -56,6 +58,10 @@ public class RemindersController implements Serializable {
     }
 
     public void create() {
+        selected.setUserID(user.getId());
+        selected.setEmail(user.getEmail());
+        selected.setFirstName(user.getFirstName());
+        selected.setId(0);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RemindersCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -81,6 +87,10 @@ public class RemindersController implements Serializable {
         return items;
     }
 
+    public void setUser(User guy)
+    {
+        user = guy;
+    }
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();

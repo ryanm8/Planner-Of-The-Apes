@@ -134,7 +134,13 @@
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
-                </h:panelGrid>
+                </h:panelGrid>   
+                <h:form id="form" >
+                <ui:repeat var="str" value="#{request.contextPath}/resources/images/">
+                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  label="Choose a File to Upload" /> 
+                </ui:repeat>
+                
+                 </h:form>
             </p:tab>
             <p:tab title="Group Assignments">
                 <h:panelGrid columns="2" cellpadding="10">

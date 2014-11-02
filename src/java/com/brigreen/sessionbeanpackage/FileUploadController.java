@@ -11,49 +11,47 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
- 
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
- 
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-  
-@ManagedBean(name="fileUploadController")
 
-
+@ManagedBean(name = "fileUploadController")
 
 public class FileUploadController {
-UploadedFile file;
-public void handleFileUpload(FileUploadEvent event)
-{
-file = event.getFile();
-ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-String newFileName = servletContext.getRealPath("") + File.separator + "uploaded" + File.separator+ file.getFileName();
-System.out.println(newFileName);
-FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-FacesContext.getCurrentInstance().addMessage(null, msg);
-try
-{
-FileOutputStream fos = new FileOutputStream(new File(newFileName));
-InputStream is = file.getInputstream();
-int BUFFER_SIZE = 8192;
-byte[] buffer = new byte[BUFFER_SIZE];
-int a;
-while(true)
-{
-a = is.read(buffer);
-if(a < 0) break;
-fos.write(buffer, 0, a);
-fos.flush();
-}
-fos.close();
-is.close();
-}
-catch(IOException e)
-{ }
-}
+
+    UploadedFile file;
+
+    public void handleFileUpload(FileUploadEvent event) {
+        file = event.getFile();
+        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String newFileName = servletContext.getRealPath("") + File.separator + "uploaded" + File.separator + file.getFileName();
+        System.out.println(newFileName);
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        try {
+            FileOutputStream fos = new FileOutputStream(new File(newFileName));
+            InputStream is = file.getInputstream();
+            int BUFFER_SIZE = 8192;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int a;
+            while (true) {
+                a = is.read(buffer);
+                if (a < 0) {
+                    break;
+                }
+                fos.write(buffer, 0, a);
+                fos.flush();
+            }
+            fos.close();
+            is.close();
+        } catch (IOException e) {
+        }
+    }
 }
 //public class FileUploadController {
 //   private String destination="C:\\tmp\\";

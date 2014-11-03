@@ -142,6 +142,13 @@ public class Group1Controller implements Serializable {
     return groupinfo;
     }
 
+    public List<Group1> getGroupListFromUserID(int userId) 
+    {
+    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
+    items = myItems;
+    return items;
+    }
+    
     @FacesConverter(forClass = Group1.class)
     public static class Group1ControllerConverter implements Converter {
 

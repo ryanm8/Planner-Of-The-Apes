@@ -4,9 +4,11 @@ import com.brigreen.planneroftheapes.Assignment;
 import com.brigreen.jsfclassespackage.util.JsfUtil;
 import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
 import com.brigreen.planneroftheapes.User;
+import com.brigreen.planneroftheapes.Group1;
 import com.brigreen.sessionbeanpackage.AssignmentFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -103,12 +105,25 @@ public class AssignmentController implements Serializable {
         return items;
     }
     
+    public List<Assignment> getGroupItemsByGroupObject(List<Group1> groupObject) 
+    {
+        List<Assignment> assignmentInfo = new ArrayList<Assignment>();
+
+        for(Group1 mygroup : groupObject)
+        {
+            assignmentInfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.groupid.id LIKE :ID", "ID", mygroup.getGroupID()));
+        }
+        return assignmentInfo;
+    }
+    
     public List<Assignment> getItemsArbitraryQuery(String query) {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
+    
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

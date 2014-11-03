@@ -123,7 +123,7 @@ public class AssignmentController implements Serializable {
 
         for(Group1 mygroup : groupObject)
         {
-            assignmentInfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.groupid.id LIKE :ID", "ID", mygroup.getGroupID()));
+            assignmentInfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.groupid.groupID LIKE :ID", "ID", mygroup.getGroupID()));
         }
         return assignmentInfo;
     }

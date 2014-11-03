@@ -343,7 +343,7 @@
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="User ID"/>
+                                            <h:outputText value="User"/>
                                         </f:facet>
                                         <h:outputText value="#{userController.getUserNameFromID(item.assigneeID.id)}"/>
                                     </p:column>
@@ -395,7 +395,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Starred"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.starred}"/>
+                                        <h:outputText value="#{item.starred == 1 ? 'True' : 'False'}"/>
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">

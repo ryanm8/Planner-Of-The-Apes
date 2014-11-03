@@ -12,8 +12,6 @@
             <h:form id="ReminderViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{remindersController.selected != null}">
-                        <h:outputText value="#{bundle.ViewRemindersLabel_id}"/>
-                        <h:outputText value="#{remindersController.selected.id}" title="#{bundle.ViewRemindersTitle_id}"/>
                         <h:outputText value="#{bundle.ViewRemindersLabel_date}"/>
                         <h:outputText value="#{remindersController.selected.date}" title="#{bundle.ViewRemindersTitle_date}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -22,11 +20,7 @@
                         <h:outputText value="#{remindersController.selected.text}" title="#{bundle.ViewRemindersTitle_text}"/>
                         <h:outputText value="#{bundle.ViewRemindersLabel_title}"/>
                         <h:outputText value="#{remindersController.selected.title}" title="#{bundle.ViewRemindersTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewRemindersLabel_email}"/>
-                        <h:outputText value="#{remindersController.selected.email}" title="#{bundle.ViewRemindersTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewRemindersLabel_firstName}"/>
-                        <h:outputText value="#{remindersController.selected.firstName}" title="#{bundle.ViewRemindersTitle_firstName}"/>
-                    </p:panelGrid>
+                        </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ReminderViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

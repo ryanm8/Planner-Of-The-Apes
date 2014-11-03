@@ -3,6 +3,7 @@ package com.brigreen.jsfclassespackage;
 import com.brigreen.planneroftheapes.Assignment;
 import com.brigreen.jsfclassespackage.util.JsfUtil;
 import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
+import com.brigreen.planneroftheapes.User;
 import com.brigreen.sessionbeanpackage.AssignmentFacade;
 
 import java.io.Serializable;
@@ -27,6 +28,7 @@ public class AssignmentController implements Serializable {
     private com.brigreen.sessionbeanpackage.AssignmentFacade ejbFacade;
     private List<Assignment> items = null;
     private Assignment selected;
+    private User user;
 
     public AssignmentController() {
     }
@@ -56,6 +58,11 @@ public class AssignmentController implements Serializable {
     }
 
     public void create() {
+        selected.setAssigneeID(user);
+        selected.setId(0);
+        selected.setGroupid(null);
+        selected.setDocumentsid(null);
+        selected.setDocumentPath("Add New Doc?");
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -79,6 +86,11 @@ public class AssignmentController implements Serializable {
             items = getFacade().findAll();
         //}
         return items;
+    }
+    
+    public void setUser(User guy)
+    {
+        user = guy;
     }
     
     public List<Assignment> getItemsByAssignee(int assigneeId) {

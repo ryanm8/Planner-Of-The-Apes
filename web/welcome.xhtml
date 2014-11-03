@@ -311,6 +311,96 @@
                             </h:form>
                 </h:panelGrid>
             </p:tab>
+            <p:tab title="All Group Assignments">
+                <h:panelGrid columns="2" cellpadding="10">
+                            <h:form id="MyGroupInfoListForm">
+                                <p:panel header="All Group Assignments">
+                                    <p:dataTable id="datalist" value="#{assignmentController.getGroupItemsByGroupObject(group1Controller.getGroupListFromUserID(user.id))}" var="item"
+                                                 selectionMode="single" selection="#{assignmentController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.id}"
+                                                 rows="10"
+                                                 rowsPerPageTemplate="10,20,30,40,50"
+                                                 >
+                                        <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assignmentName}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Group Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{(group1Controller.getGroupNameFromID(item.groupid.id))}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="User ID"/>
+                                        </f:facet>
+                                        <h:outputText value="#{userController.getUserNameFromID(item.assigneeID.id)}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Due Date"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.dueDate}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Priority"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.priority}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Progress"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.progress}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Subject"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.class1}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Difficulty"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.difficulty}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Notes"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.notes}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Type"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.type}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Starred"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.starred}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Attached Document"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.documentPath}"/>
+                                    </p:column>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+                </h:panelGrid>
+            </p:tab>
         </p:tabView>
                         <ui:include src="RemindersCreate.xhtml"/>
                     <ui:include src="RemindersEdit.xhtml"/>

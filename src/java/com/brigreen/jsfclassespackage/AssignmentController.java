@@ -70,6 +70,18 @@ public class AssignmentController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void createGroupAssign() {
+        selected.setAssigneeID(user);
+        selected.setId(0);
+        //selected.setGroupid(null);
+        selected.setDocumentsid(null);
+        selected.setDocumentPath("Add New Doc?");
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));

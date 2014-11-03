@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GroupAssignmentEditDlg" widgetVar="GroupAssignmentEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAssignmentTitle}">
+            <h:form id="GroupAssignmentEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{assignmentController.selected != null}">
+                        <p:outputLabel value="Assignment Name" for="assignmentName" />
+                        <p:inputText id="assignmentName" value="#{assignmentController.selected.assignmentName}" title="#{bundle.EditAssignmentTitle_assignmentName}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_assignmentName}"/>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_dueDate}" for="dueDate" />
+                        <p:calendar id="dueDate" pattern="MM/dd/yyyy" value="#{assignmentController.selected.dueDate}" title="#{bundle.EditAssignmentTitle_dueDate}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_dueDate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_priority}" for="priority" />
+                        <p:selectOneMenu id="priority" value="#{assignmentController.selected.priority}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_priority}">
+                            <f:selectItem itemLabel="Low" itemValue="Low"/>
+                            <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                            <f:selectItem itemLabel="High" itemValue="High"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_progress}" for="progress" />
+                        <p:selectOneMenu id="progress" value="#{assignmentController.selected.progress}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_progress}">
+                            <f:selectItem itemLabel="Not Started" itemValue="Not Started"/>
+                            <f:selectItem itemLabel="In Progress" itemValue="In Progress"/>
+                            <f:selectItem itemLabel="Completed" itemValue="Completed"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_class1}" for="class1" />
+                        <p:inputText id="class1" value="#{assignmentController.selected.class1}" title="#{bundle.EditAssignmentTitle_class1}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_class1}"/>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_difficulty}" for="difficulty" />
+                        <p:selectOneMenu id="difficulty" value="#{assignmentController.selected.difficulty}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_difficulty}">
+                            <f:selectItem itemLabel="Easy" itemValue="Easy"/>
+                            <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                            <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_notes}" for="notes" />
+                        <p:inputText id="notes" value="#{assignmentController.selected.notes}" title="#{bundle.EditAssignmentTitle_notes}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_notes}"/>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_type}" for="type" />
+                        <p:selectOneMenu id="type" value="#{assignmentController.selected.type}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_type}">
+                            <f:selectItem itemLabel="Assignment" itemValue="Assignment"/>
+                            <f:selectItem itemLabel="Project" itemValue="Project"/>
+                            <f:selectItem itemLabel="Other" itemValue="Other"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAssignmentLabel_starred}" for="starred" />
+                        <p:selectOneMenu id="starred" value="#{assignmentController.selected.starred}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_starred}"> 
+                            <f:selectItem itemLabel="False" itemValue="0"/>
+                            <f:selectItem itemLabel="True" itemValue="1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAssignmentLabel_groupid}" for="groupid" />
+                        <p:selectOneMenu id="groupid" value="#{assignmentController.selected.groupid}" required="true" >
+                            <f:selectItems value="#{group1Controller.getGroupListFromUserID(user.id)}"
+                                           var="groupidItem"
+                                           itemValue="#{groupidItem}"
+                                           itemLabel="#{groupidItem.name}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assignmentController.update}" value="#{bundle.Save}" update="display,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupInfoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GroupAssignmentEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GroupAssignmentEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

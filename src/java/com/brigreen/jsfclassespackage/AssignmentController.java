@@ -93,8 +93,11 @@ public class AssignmentController implements Serializable {
      {
          if (selected != null)
          { 
-            selected.removeDocument();
-            update();
+            if (selected.getFile() != null)
+            {
+                selected.removeDocument();
+                update();
+            }
          }
      }
      
@@ -103,11 +106,13 @@ public class AssignmentController implements Serializable {
         {
             try {
                 selected.upload();
+                persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
             } catch (IOException ex) {
                 Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
+        
     }
 
     

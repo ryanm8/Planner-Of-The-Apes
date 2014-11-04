@@ -116,6 +116,27 @@ public class Group1Controller implements Serializable {
         create();
     }
     
+    public void removeMember(User currentUser)
+    {
+        if(currentUser.getPid().equals(selected.getAdmin()))
+        {
+            if(selected.getUserID() != currentUser.getId())
+            {
+                destroy();
+            }
+            else
+            {
+                JsfUtil.addErrorMessage("You can't remove yourself, you are the group admin.");
+            }
+        }
+        else
+        {
+            JsfUtil.addErrorMessage("You're not the group admin.");
+            return;
+        }
+
+    }
+    
     public void leaveGroup(User theUser)
     {
         if(selected.getUserID() == theUser.getId() && !selected.getAdmin().equals(theUser.getPid()))

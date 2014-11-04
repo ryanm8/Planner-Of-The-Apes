@@ -32,3 +32,8 @@
 #username{
     font-size:2em;
 }
+
+#carousel {
+    margin: 0 auto;
+    width:80%
+}

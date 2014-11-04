@@ -32,10 +32,6 @@
          * THE POSSIBILITY OF SUCH DAMAGE.
          */
 -->
-
-
-
-
 <html 
     content-type="text/html"
     page-encoding="UTF-8" 
@@ -52,27 +48,29 @@
     <ui:composition template="/exteriorTemplate.xhtml">
         <ui:define name="body">
             <f:view contentType="text/html" >
-                <p:carousel numVisible="1" itemStyle="height:300px;width:800px;margin:auto;" effect="easeInStrong" headerText="Our planner can help you!" style="margin-bottom:20px;">
+                <div id="carousel">
+                <p:carousel numVisible="1" itemStyle="width:100%; margin: 0 auto; display:inline-block;" effect="easeInStrong" headerText="Our planner can help you!" style="margin-bottom:20px;">
                     <p:tab title="Control your monkey business">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage height="290px" name="/images/monkey-business.jpg" />
+                            <p:graphicImage width="100%" name="/images/monkey-business.jpg" />
                             <h:outputText
                                 value="Do you have monkey business to do? Let us help!" />
                         </h:panelGrid>
                     </p:tab>
                     <p:tab title="Don't go bananas!">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage height="290px" name="/images/bananas.jpg" />
+                            <p:graphicImage width="100%" name="/images/bananas.jpg" />
                             <h:outputText value="Sometimes your schedule can go bananas!" />
                         </h:panelGrid>
                     </p:tab>
                     <p:tab title="We'll guide your life">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage height="290px" name="/images/banana-colors.jpg" />
+                            <p:graphicImage width="100%" name="/images/banana-colors.jpg" />
                             <h:outputText value="We'll help guide you on the right path." />
                         </h:panelGrid>
                     </p:tab>
                 </p:carousel>
+                </div>
             </f:view>
         </ui:define>
     </ui:composition>

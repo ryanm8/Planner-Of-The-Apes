@@ -34,7 +34,7 @@
                         <p:selectOneMenu id="difficulty" value="#{assignmentController.selected.difficulty}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_difficulty}">
                             <f:selectItem itemLabel="Easy" itemValue="Easy"/>
                             <f:selectItem itemLabel="Medium" itemValue="Medium"/>
-                            <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                            <f:selectItem itemLabel="Hard" itemValue="Hard"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditAssignmentLabel_notes}" for="notes" />
                         <p:inputText id="notes" value="#{assignmentController.selected.notes}" title="#{bundle.EditAssignmentTitle_notes}" required="true" requiredMessage="#{bundle.EditAssignmentRequiredMessage_notes}"/>

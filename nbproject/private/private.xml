@@ -12,13 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/assignment/View.xhtml</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcome.xhtml</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/index.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/css/jsfcrud.css</file>
             <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/template.xhtml</file>
             <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/loginTemplate.xhtml</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/exteriorTemplate.xhtml</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/createAccountTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/assignment/View.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/login.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcome.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/index.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/css/accountManagement.css</file>
         </group>
     </open-files>
 </project-private>

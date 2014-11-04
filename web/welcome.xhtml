@@ -274,11 +274,11 @@
                                         <h:outputText value="#{item.documentPath}"/>
                                     </p:column>
                                     <f:facet name="footer">
-                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assignmentController.prepareCreate}" update=":GroupAssignmentCreateForm" oncomplete="PF('GroupAssignmentCreateDialog').show()"/>
-                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":GroupAssignmentViewForm" oncomplete="PF('GroupAssignmentViewDialog').show()" disabled="#{empty assignmentController.selected}"/>
-                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":GroupAssignmentEditForm" oncomplete="PF('GroupAssignmentEditDialog').show()" disabled="#{empty assignmentController.selected}"/>
-                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assignmentController.destroy}" update=":growl,datalist,:tview:MyGroupInfoListForm:datalist" disabled="#{empty assignmentController.selected}"/>
-                                        </f:facet>
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{assignmentController.prepareCreate}" update=":GroupAssignmentCreateForm" oncomplete="PF('GroupAssignmentCreateDialog').show()"/>
+                                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":GroupAssignmentViewForm" oncomplete="PF('GroupAssignmentViewDialog').show()" disabled="#{empty assignmentController.selected}"/>
+                                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":GroupAssignmentEditForm" oncomplete="PF('GroupAssignmentEditDialog').show()" disabled="#{empty assignmentController.selected}"/>
+                                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assignmentController.destroy}" update=":growl,datalist,:tview:MyGroupInfoListForm:datalist" disabled="#{empty assignmentController.selected}"/>
+                                    </f:facet>
                                 </p:dataTable>
                             </p:panel>
                         </h:form>
@@ -321,6 +321,9 @@
                                             </f:facet>
                                             <h:outputText value="#{(userController.getUserEmailFromID(item.userID))}"/>
                                         </p:column>
+                                        <f:facet name="footer">
+                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{group1Controller.prepareCreate}" update=":GroupCreateForm" oncomplete="PF('GroupCreateDialog').show()"/>
+                                        </f:facet>
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
@@ -426,6 +429,7 @@
             <ui:include src="GroupAssignmentCreate.xhtml"/>
             <ui:include src="GroupAssignmentEdit.xhtml"/>
             <ui:include src="GroupAssignmentView.xhtml"/>
+            <ui:include src="GroupCreate.xhtml"/>
                     </ui:define>
                 </ui:composition>
 </html>

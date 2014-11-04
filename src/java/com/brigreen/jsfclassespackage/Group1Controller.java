@@ -3,6 +3,7 @@ package com.brigreen.jsfclassespackage;
 import com.brigreen.planneroftheapes.Group1;
 import com.brigreen.jsfclassespackage.util.JsfUtil;
 import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
+import com.brigreen.planneroftheapes.User;
 import com.brigreen.sessionbeanpackage.Group1Facade;
 
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class Group1Controller implements Serializable {
     private com.brigreen.sessionbeanpackage.Group1Facade ejbFacade;
     private List<Group1> items = null;
     private Group1 selected;
+    private User user;
 
     public Group1Controller() {
     }
@@ -61,6 +63,15 @@ public class Group1Controller implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+    
+    public void createGroup()
+    {
+        selected.setAdmin(user.getPid());
+        selected.setUserID(user.getId());
+        selected.setId(0);
+        selected.
+        
     }
 
     public void update() {

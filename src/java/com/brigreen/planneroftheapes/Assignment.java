@@ -4,8 +4,17 @@
  */
 package com.brigreen.planneroftheapes;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +28,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -108,6 +119,10 @@ public class Assignment implements Serializable {
     @JoinColumn(name = "Group_id", referencedColumnName = "ID")
     @ManyToOne
     private Group1 groupid;
+    @Transient
+    private UploadedFile file;
+    @Transient
+    private String path = "/home/CS4704/planneroftheapes/Documents/";
 
     public Assignment() {
     }
@@ -138,6 +153,87 @@ public class Assignment implements Serializable {
         this.id = id;
     }
 
+    public UploadedFile getFile()
+    {
+        return file;
+    }
+    
+    public void setFile(UploadedFile newFile)
+    {
+        file = newFile;
+    }
+    
+    public void removeDocument()
+    {
+        if (file != null)
+        {
+            File newFile = new File(path + id + "/" + documentPath);
+            if (newFile.delete())
+            {
+                System.out.println("FILE DELETED GOOD JOB!");
+            }
+            else
+            {
+                System.out.println("FILE STILL THERE. NO GOOD.");
+            }
+            documentPath = "Add new doc?";
+            
+        }
+    }
+    public void upload() throws IOException{
+        if (!documentPath.equals("Add New Doc?"))
+        {
+            removeDocument();
+        }
+        if(file != null) {
+            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            documentPath = file.getFileName();
+             try {
+             copyFile(file.getFileName(), file.getInputstream());
+             } catch (IOException e) {
+             e.printStackTrace();
+             } 
+        }
+    }
+
+    private void copyFile(String fileName, InputStream inputstream) {
+        // write the inputStream to a FileOutputStream
+        try {
+        String tempFileName = path + id;
+        String newFileName = path + id + "/" + fileName;
+        File tempFile = new File(tempFileName);
+        tempFile.mkdirs();
+        OutputStream out = new FileOutputStream(new File(newFileName));
+
+        
+//        ExternalContext tmpEC;
+//        Map sMap;
+//        tmpEC = FacesContext.getCurrentInstance().getExternalContext();
+//        sMap = tmpEC.getSessionMap();
+//        AssignmentController asgController = (AssignmentController) sMap.get("assignmentController");
+//        Assignment asg1 = asgController.getAssignment(Integer.parseInt(asg));
+//        asg1.setDocumentPath(asg + "\\" + fileName);
+//        asgController.setSelected(asg1);
+//        asgController.update();
+        
+        int read = 0;
+        byte[] bytes = new byte[1024];
+
+        while ((read = inputstream.read(bytes)) != -1) {
+             out.write(bytes, 0, read);
+         }
+
+        inputstream.close();
+        out.flush();
+        out.close();
+
+        System.out.println("New file created!");
+        } catch (IOException e) {
+        System.out.println(e.getMessage());
+        }
+    }
+    
     public Date getDueDate() {
         return dueDate;
     }

@@ -139,14 +139,15 @@
                                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{assignmentController.destroy}" update=":growl,datalist" disabled="#{empty assignmentController.selected}"/>
                                         </f:facet>
                                     </p:dataTable>
+      
                                 </p:panel>
                             </h:form>
+                                        <h:form enctype="multipart/form-data">
+                                        <p:growl id="messages" showDetail="true" />
+                                        <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
+                                        <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
+                                        </h:form>
                 </h:panelGrid>   
-                <h:form id="form" >
-                <ui:repeat var="str" value="#{user.pid}/">
-                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  label="Choose a File to Upload" /> 
-                </ui:repeat>
-                 </h:form>
             </p:tab>
             <p:tab title="My Reminders">
                 <h:panelGrid columns="2" cellpadding="10">
@@ -281,6 +282,11 @@
                                     </f:facet>
                                 </p:dataTable>
                             </p:panel>
+                        </h:form>
+                        <h:form enctype="multipart/form-data">
+                            <p:growl id="messages" showDetail="true" />
+                            <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
+                            <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
                         </h:form>
                     </h:panelGrid>
                 </p:tab>

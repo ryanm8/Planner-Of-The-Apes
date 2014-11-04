@@ -6,6 +6,7 @@ import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
 import com.brigreen.planneroftheapes.User;
 import com.brigreen.planneroftheapes.Group1;
 import com.brigreen.sessionbeanpackage.AssignmentFacade;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,11 +18,13 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+@ManagedBean(name="assignmentController")
 @Named("assignmentController")
 @SessionScoped
 public class AssignmentController implements Serializable {
@@ -84,9 +87,18 @@ public class AssignmentController implements Serializable {
     }
 
     public void update() {
+        if (selected.getFile() != null)
+        {
+            try {
+                selected.upload();
+            } catch (IOException ex) {
+                Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
     }
 
+    
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AssignmentDeleted"));
         if (!JsfUtil.isValidationFailed()) {

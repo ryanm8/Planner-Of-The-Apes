@@ -35,5 +35,97 @@
 
 #carousel {
     margin: 0 auto;
-    width:80%
+    position:absolute;
+    width:90%
+}
+
+#j_idt25{
+    margin: 0 auto !important;
+    width:98% !important;
+    position: relative !important;
+}
+
+/*------------------------------------*\
+    $CAROUSEL
+\*------------------------------------*/
+.carousel{
+    overflow:hidden;
+    width:100%;
+}
+.panes{
+    list-style:none;
+    position:relative;
+    width:300%; /* Number of panes * 100% */
+    overflow:hidden; /* This is used solely to clear floats, it does not add functionality. */
+        
+    -moz-animation:carousel 30s infinite;
+    -webkit-animation:carousel 30s infinite;
+    animation:carousel 30s infinite;
+}
+.panes > li{
+    position:relative;
+    float:left;
+    width:20%; /* 100 / number of panes */
+}
+.carousel img{
+    display:block;
+    width:100%;
+    max-width:100%;
+}
+.carousel h2{
+    font-size:1em;
+    padding:0.5em;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    left:10px;
+    text-align:right;
+    color:#fff;
+    background-color:rgba(0,0,0,0.75);
+}
+
+.tp-bannershadow.tp-shadow2 {
+background: url('./images/shadow.png') no-repeat;
+background-size: 100% 100%;
+width: 70%;
+margin: 0 auto;
+display:block;
+height: 60px;
+bottom: -60px;
+}
+
+#thin-text
+{
+    font-size: 2.5em;
+    color: #555;
+    font-weight: 300;
+    font-family: 'Open Sans',Helvetica Neue,Arial;
+    text-align:center;
+}
+
+#thin-text.p
+{
+    -webkit-margin-before: 0;
+    text-align:center;
+    margin-top:-10px;
+}
+
+#fullPage
+{
+    background-image: url(http://www.cloudfrontgroup.com/wp-content/themes/wpex-impact/images/bgs/gray_jean.png);
+    height: auto;
+margin: 0 auto !important;
+position: absolute;
+top: 0px;
+bottom: 0px;
+left: 0px;
+right: 0px;
+width: 100% !important;
+overflow: visible;
+}
+
+#ui-layout-container
+{
+    width:95% !important;
+    margin: 0 auto !important;
 }

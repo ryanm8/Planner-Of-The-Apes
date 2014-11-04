@@ -35,7 +35,7 @@
 <html 
     content-type="text/html"
     page-encoding="UTF-8" 
-    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:l="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
@@ -47,31 +47,14 @@
     </h:head>
     <ui:composition template="/exteriorTemplate.xhtml">
         <ui:define name="body">
-            <f:view contentType="text/html" >
-                <div id="carousel">
-                <p:carousel numVisible="1" itemStyle="width:100%; margin: 0 auto; display:inline-block;" effect="easeInStrong" headerText="Our planner can help you!" style="margin-bottom:20px;">
-                    <p:tab title="Control your monkey business">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage width="100%" name="/images/monkey-business.jpg" />
-                            <h:outputText
-                                value="Do you have monkey business to do? Let us help!" />
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Don't go bananas!">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage width="100%" name="/images/bananas.jpg" />
-                            <h:outputText value="Sometimes your schedule can go bananas!" />
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="We'll guide your life">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage width="100%" name="/images/banana-colors.jpg" />
-                            <h:outputText value="We'll help guide you on the right path." />
-                        </h:panelGrid>
-                    </p:tab>
-                </p:carousel>
-                </div>
-            </f:view>
+            <p:graphicImage width="70%" style="margin:0 auto; display:block;" name="/images/indexPicture.png" />
+            <div class="tp-bannershadow tp-shadow2" style="width: 70%; left: 0px;"></div>
+            <div id="thin-text">
+                <p style="margin-top:0px;">Don't let your life go bananas</p>
+                <p> We'll help you take control today!</p>
+                <br/>
+                <br/>
+            </div>
         </ui:define>
     </ui:composition>
 </html>  

@@ -129,8 +129,8 @@ public class Assignment implements Serializable {
     @Transient
     private UploadedFile file;
     @Transient
-    //private String path = "C:\\Users\\Chris\\Desktop\\";
-    private String path = "/home/CS4704/planneroftheapes/Documents/";
+    private String path = "C:\\Users\\Chris\\Desktop\\";
+    //private String path = "/home/CS4704/planneroftheapes/Documents/";
     
     public Assignment() {
     }
@@ -177,8 +177,8 @@ public class Assignment implements Serializable {
         {
             InputStream stream = null;
             try {
-                String thispath = path + id + "/" + documentPath;
-                //String thispath = path + id + "\\" + documentPath;
+                //String thispath = path + id + "/" + documentPath;
+                String thispath = path + id + "\\" + documentPath;
                 File f = new File(thispath);
                 stream = new FileInputStream(f);
                 return new DefaultStreamedContent(stream, Files.probeContentType(Paths.get(thispath)), documentPath);
@@ -191,10 +191,10 @@ public class Assignment implements Serializable {
     
     public void removeDocument()
     {
-        if (file != null)
+        if (file != null || !documentPath.equals("Add New Doc?"))
         {
-            File newFile = new File(path + id + "/" + documentPath);
-            //File newFile = new File(path + id + "\\" + documentPath);
+            //File newFile = new File(path + id + "/" + documentPath);
+            File newFile = new File(path + id + "\\" + documentPath);
             if (newFile.delete())
             {
                 System.out.println("FILE DELETED GOOD JOB!");
@@ -218,6 +218,7 @@ public class Assignment implements Serializable {
             documentPath = file.getFileName();
              try {
              copyFile(file.getFileName(), file.getInputstream());
+             file=null;
              } catch (IOException e) {
              e.printStackTrace();
              } 
@@ -228,8 +229,8 @@ public class Assignment implements Serializable {
         // write the inputStream to a FileOutputStream
         try {
         String tempFileName = path + id;
-        String newFileName = path + id + "/" + fileName;
-        //String newFileName = path + id + "\\" + fileName;
+        //String newFileName = path + id + "/" + fileName;
+        String newFileName = path + id + "\\" + fileName;
         File tempFile = new File(tempFileName);
         tempFile.mkdirs();
         OutputStream out = new FileOutputStream(new File(newFileName));

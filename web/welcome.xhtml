@@ -68,8 +68,8 @@
                                                  rows="10"
                                                  rowsPerPageTemplate="10,20,30,40,50"
                                                  >
-                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton :tview:up:submitButton :tview:down:downloadButton :tview:remove:dlRemove"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton :tview:up:submitButton :tview:down:downloadButton :tview:remove:dlRemove"/>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Name"/>
@@ -141,15 +141,18 @@
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
-                            <h:form enctype="multipart/form-data">
+                            <h:form enctype="multipart/form-data" id="up">
                                 <p:growl id="messages" showDetail="true" />
                                 <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
-                                <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
+                                <p:commandButton value="Submit" id="submitButton" ajax="false" actionListener="#{assignmentController.upload}" disabled="#{empty assignmentController.selected}" />
                             </h:form>
-                            <h:form>
-                        <p:commandButton value="Download" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s">
+                            <h:form id="down">
+                                <p:commandButton value="Download" id="downloadButton" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s" disabled="#{empty assignmentController.selected}">
                             <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
                         </p:commandButton>
+                    </h:form>
+                    <h:form id="remove">
+                            <p:commandButton value="Remove Attached File" id="dlRemove" ajax="false" onclick="#{assignmentController.removeDocument()}" icon="ui-icon-trash" disabled="#{empty assignmentController.selected}"/>
                     </h:form>
                 </h:panelGrid>   
             </p:tab>
@@ -208,8 +211,8 @@
                                              rows="10"
                                              rowsPerPageTemplate="10,20,30,40,50"
                                              >
-                                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton :tview:upG:submitButton :tview:downG:downloadButton :tview:removeG:dlRemove"/>
+                                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton :tview:upG:submitButton :tview:downG:downloadButton :tview:removeG:dlRemove"/>
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Name"/>
@@ -287,15 +290,18 @@
                                 </p:dataTable>
                             </p:panel>
                         </h:form>
-                        <h:form enctype="multipart/form-data">
+                        <h:form enctype="multipart/form-data" id="upG">
                             <p:growl id="messages" showDetail="true" />
                             <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
-                            <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
+                            <p:commandButton value="Submit" id="submitButton" ajax="false" actionListener="#{assignmentController.upload}" disabled="#{empty assignmentController.selected}" />
                         </h:form>
-                        <h:form>
-                        <p:commandButton value="Download" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s">
+                        <h:form id="downG">
+                        <p:commandButton value="Download" id="downloadButton" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s" disabled="#{empty assignmentController.selected}">
                             <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
                         </p:commandButton>
+                    </h:form>
+                        <h:form id="removeG">
+                            <p:commandButton value="Remove Attached File" id="dlRemove" ajax="false" onclick="#{assignmentController.removeDocument()}" icon="ui-icon-trash" disabled="#{empty assignmentController.selected}"/>
                     </h:form>
                     </h:panelGrid>
                 </p:tab>

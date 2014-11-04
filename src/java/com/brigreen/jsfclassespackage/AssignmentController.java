@@ -84,8 +84,21 @@ public class AssignmentController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+     public void update() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
+    }
 
-    public void update() {
+     public void removeDocument()
+     {
+         if (selected != null)
+         { 
+            selected.removeDocument();
+            update();
+         }
+     }
+     
+    public void upload() {
         if (selected.getFile() != null)
         {
             try {

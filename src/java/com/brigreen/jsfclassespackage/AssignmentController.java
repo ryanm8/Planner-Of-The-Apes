@@ -28,7 +28,6 @@ import javax.faces.convert.FacesConverter;
 @Named("assignmentController")
 @SessionScoped
 public class AssignmentController implements Serializable {
-
     @EJB
     private com.brigreen.sessionbeanpackage.AssignmentFacade ejbFacade;
     private List<Assignment> items = null;

@@ -8,14 +8,14 @@
 
     <ui:composition>
 
-        <p:dialog id="GroupCreate" widgetVar="GroupCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAssignmentTitle}" onShow="#{assignmentController.setUser(user)}">
+        <p:dialog id="GroupCreate" widgetVar="GroupCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAssignmentTitle}" onShow="#{group1Controller.setUser(user)}">
             <h:form id="GroupCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{group1Controller.selected != null}">
                         <p:outputLabel value="Group Name:" for="groupName" />
                         <p:inputText id="groupName" value="#{group1Controller.selected.name}" title="#{bundle.CreateGroupTitle_assignmentName}" required="true" requiredMessage="#{bundle.CreateGroupRequiredMessage_assignmentName}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{group1Controller.createGroup}" value="#{bundle.Save}" update="display,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupInfoListForm:datalist,:growl" oncomplete="handleSubmit(args,'GroupCreateDialog');"/>
+                    <p:commandButton actionListener="#{group1Controller.createGroup}" value="#{bundle.Save}" update="display,:tview:MyGroupListForm:datalist,:growl" oncomplete="handleSubmit(args,'GroupCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GroupCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

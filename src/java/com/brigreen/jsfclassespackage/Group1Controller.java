@@ -30,6 +30,7 @@ public class Group1Controller implements Serializable {
     private List<Group1> items = null;
     private Group1 selected;
     private User user;
+    private int counter = 15;
 
     public Group1Controller() {
     }
@@ -59,6 +60,11 @@ public class Group1Controller implements Serializable {
     }
 
     public void create() {
+        selected.setAdmin(user.getPid());
+        selected.setUserID(user.getId());
+        selected.setId(counter);
+        selected.setGroupID(14); //temporary group ID number
+        selected.setGroupUserid(counter++); //temporary group user ID
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("Group1Created"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -67,9 +73,32 @@ public class Group1Controller implements Serializable {
     
     public void createGroup()
     {
-        selected.setAdmin(user.getPid());
-        selected.setUserID(user.getId());
-        selected.setId(0);        
+        List<Group1> list = this.getGroupListFromUserID(user.getId());
+        for(Group1 g : list)
+        {
+            if (g.getName().equals(selected.getName()) && g.getAdmin().equals(user.getPid()))
+            {
+                JsfUtil.addErrorMessage("You cannot have two of your groups have the same name");
+                return;
+            }
+        }
+        create();
+        System.out.println(selected.getId());
+        System.out.println(selected.getName());
+        list = this.getGroupListFromUserID(user.getId());
+        for (Group1 g : list) {
+            if (g.getName().equals(selected.getName()) && g.getAdmin().equals(user.getPid())) {
+                System.out.println(g.getName());
+                System.out.println(g.getId());
+                System.out.println(selected.getId());
+                System.out.println(selected.getName());
+                selected = g;
+                selected.setGroupID(selected.getId());
+                selected.setGroupUserid(selected.getId());
+                update();
+                return;
+            }
+        }
     }
 
     public void update() {
@@ -198,5 +227,9 @@ public class Group1Controller implements Serializable {
         }
 
     }
-
+    
+public void setUser(User user)
+{
+    this.user = user;
+}
 }

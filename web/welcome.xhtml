@@ -146,7 +146,11 @@
                                 <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
                                 <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
                             </h:form>
-
+                            <h:form>
+                        <p:commandButton value="Download" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s">
+                            <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
+                        </p:commandButton>
+                    </h:form>
                 </h:panelGrid>   
             </p:tab>
             <p:tab title="My Reminders">
@@ -288,6 +292,11 @@
                             <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
                             <p:commandButton value="Submit" ajax="false" actionListener="#{assignmentController.update}" disabled="false" />
                         </h:form>
+                        <h:form>
+                        <p:commandButton value="Download" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s">
+                            <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
+                        </p:commandButton>
+                    </h:form>
                     </h:panelGrid>
                 </p:tab>
             <p:tab title="My Group Info">

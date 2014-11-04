@@ -5,6 +5,8 @@
 package com.brigreen.planneroftheapes;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.Basic;
@@ -32,6 +37,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -122,8 +129,11 @@ public class Assignment implements Serializable {
     @Transient
     private UploadedFile file;
     @Transient
+    //private String path = "C:\\Users\\Chris\\Desktop\\";
     private String path = "/home/CS4704/planneroftheapes/Documents/";
-
+    @Transient
+    private StreamedContent dlFile;
+    
     public Assignment() {
     }
 
@@ -163,11 +173,30 @@ public class Assignment implements Serializable {
         file = newFile;
     }
     
+    public StreamedContent getDlFile() throws IOException
+    {
+        if(!documentPath.equals("Add New Doc ?"))
+        {
+            InputStream stream = null;
+            try {
+                String thispath = path + id + "/" + documentPath;
+                //String thispath = path + id + "\\" + documentPath;
+                File f = new File(thispath);
+                stream = new FileInputStream(f);
+                return new DefaultStreamedContent(stream, Files.probeContentType(Paths.get(thispath)), documentPath);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+    
     public void removeDocument()
     {
         if (file != null)
         {
             File newFile = new File(path + id + "/" + documentPath);
+            //File newFile = new File(path + id + "\\" + documentPath);
             if (newFile.delete())
             {
                 System.out.println("FILE DELETED GOOD JOB!");
@@ -202,6 +231,7 @@ public class Assignment implements Serializable {
         try {
         String tempFileName = path + id;
         String newFileName = path + id + "/" + fileName;
+        //String newFileName = path + id + "\\" + fileName;
         File tempFile = new File(tempFileName);
         tempFile.mkdirs();
         OutputStream out = new FileOutputStream(new File(newFileName));

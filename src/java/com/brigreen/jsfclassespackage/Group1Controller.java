@@ -60,11 +60,6 @@ public class Group1Controller implements Serializable {
     }
 
     public void create() {
-        selected.setAdmin(user.getPid());
-        selected.setUserID(user.getId());
-        selected.setId(counter);
-        selected.setGroupID(14); //temporary group ID number
-        selected.setGroupUserid(counter++); //temporary group user ID
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("Group1Created"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -82,16 +77,15 @@ public class Group1Controller implements Serializable {
                 return;
             }
         }
+        selected.setAdmin(user.getPid());
+        selected.setUserID(user.getId());
+        selected.setId(counter);
+        selected.setGroupID(14); //temporary group ID number
+        selected.setGroupUserid(counter++); //temporary group user ID
         create();
-        System.out.println(selected.getId());
-        System.out.println(selected.getName());
         list = this.getGroupListFromUserID(user.getId());
         for (Group1 g : list) {
             if (g.getName().equals(selected.getName()) && g.getAdmin().equals(user.getPid())) {
-                System.out.println(g.getName());
-                System.out.println(g.getId());
-                System.out.println(selected.getId());
-                System.out.println(selected.getName());
                 selected = g;
                 selected.setGroupID(selected.getId());
                 selected.setGroupUserid(selected.getId());
@@ -99,6 +93,65 @@ public class Group1Controller implements Serializable {
                 return;
             }
         }
+    }
+    
+    public void addMember(User newUser)
+    {
+        List<Group1> list = this.getGroupListFromUserID(newUser.getId());
+        for (Group1 g : list) {
+            if (g.getGroupID() == selected.getGroupID()) {
+                JsfUtil.addErrorMessage("User is already a member of this group");
+                return;
+            }
+        }
+        Group1 newGroup = new Group1();
+        initializeEmbeddableKey();
+        newGroup.setAdmin(selected.getAdmin());
+        newGroup.setName(selected.getName());
+        newGroup.setGroupID(selected.getGroupID());
+        newGroup.setId(counter);
+        newGroup.setGroupUserid(counter++);
+        newGroup.setUserID(newUser.getId());
+        selected = newGroup;
+        create();
+    }
+    
+    public void removeMember(User currentUser)
+    {
+        if(currentUser.getPid().equals(selected.getAdmin()))
+        {
+            if(selected.getUserID() != currentUser.getId())
+            {
+                destroy();
+            }
+            else
+            {
+                JsfUtil.addErrorMessage("You can't remove yourself, you are the group admin.");
+            }
+        }
+        else
+        {
+            JsfUtil.addErrorMessage("You're not the group admin.");
+            return;
+        }
+
+    }
+    
+    public void leaveGroup(User theUser)
+    {
+        if(selected.getUserID() == theUser.getId() && !selected.getAdmin().equals(theUser.getPid()))
+        {
+            destroy();
+        }
+        else if(selected.getAdmin().equals(theUser.getPid()))
+        {
+            JsfUtil.addErrorMessage("You cannot leave a group you are an admin of.");
+        }
+        else if(selected.getUserID() == theUser.getId())
+        {
+            JsfUtil.addErrorMessage("You are not the selected user.");
+        }
+        
     }
 
     public void update() {

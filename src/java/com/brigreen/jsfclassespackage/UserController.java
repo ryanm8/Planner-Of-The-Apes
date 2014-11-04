@@ -134,6 +134,13 @@ public class UserController implements Serializable {
     items = myItems;
     return (myItems.get(0).getEmail()) ;
     }
+    
+    public User getUserFromPID(String pid) {
+        List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.pid LIKE :ID", "ID", pid);
+        items = myItems;
+        return myItems.get(0);
+    }
+    
 
 
     @FacesConverter(forClass = User.class)

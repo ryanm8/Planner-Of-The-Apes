@@ -192,6 +192,13 @@ public class UserManager {
             wuser.setLastName(lname);
             wuser.setPassword(password);
             wuser.setPid(username);
+            String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            if(!email.matches(EMAIL_REGEX))
+            {
+                FacesMessage message = new FacesMessage("Please enter a valid Email Address.");
+                context.addMessage(null, message);
+                return null;
+            }
             wuser.setEmail(email);
             try {
                 utx.begin();

@@ -92,6 +92,7 @@ margin: 0 auto;
 display:block;
 height: 60px;
 bottom: -60px;
+margin-bottom:-10px;
 }
 
 #thin-text
@@ -101,13 +102,13 @@ bottom: -60px;
     font-weight: 300;
     font-family: 'Open Sans',Helvetica Neue,Arial;
     text-align:center;
+        margin-bottom:-50px !important;
 }
 
 #thin-text.p
 {
-    -webkit-margin-before: 0;
     text-align:center;
-    margin-top:-10px;
+    margin-top:-10px !important;
 }
 
 #fullPage
@@ -128,4 +129,59 @@ overflow: visible;
 {
     width:95% !important;
     margin: 0 auto !important;
+}
+
+.symple-one-third {
+position: relative;
+margin-right: 4%;
+margin-bottom: 0;
+float: left;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+width: 30.66%;
+}
+#columns{
+    margin:0 auto;
+}
+#column-left{ float: left; width: 23%; margin-left:10%; margin-right:4%; margin-top:0px;}
+#column-right{ float: right; width: 23%; margin-right:10%;}
+#column-center{ display: inline-block; width: 26%; margin-right:4%;}
+
+#columns.h4{
+    font-size: 1em;
+font-weight: 700;
+color:black;
+margin: 10px 0 20px;
+}
+
+#columns.alignleft{
+    float: left;
+    margin: 0 20px 10px 0;
+}
+
+#testimonial-content {
+font-family: "Open Sans";
+position: relative;
+background: #f5f5f5;
+padding: 20px;
+color: #000;
+-webkit-border-radius: 10px;
+font-size: 1em;
+font-weight: 300;
+}
+
+#testiominla-content:after{
+content: "";
+position: absolute;
+left: 12px;
+bottom: -15px;
+width: 0px;
+height: 0px;
+border-bottom: 15px solid rgba(255,255,255,0);
+border-top: 15px solid rgba(255,255,255,0);
+border-right: 15px solid #f5f5f5;
+font-size: 0px;
+line-height: 0px;
+border-radius: 2px;
 }

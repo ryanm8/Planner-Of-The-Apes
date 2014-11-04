@@ -94,6 +94,23 @@ public class Group1Controller implements Serializable {
             }
         }
     }
+    
+    public void leaveGroup(User theUser)
+    {
+        if(selected.getUserID() == theUser.getId() && !selected.getAdmin().equals(theUser.getPid()))
+        {
+            destroy();
+        }
+        else if(selected.getAdmin().equals(theUser.getPid()))
+        {
+            JsfUtil.addErrorMessage("You cannot leave a group you are an admin of.");
+        }
+        else if(selected.getUserID() == theUser.getId())
+        {
+            JsfUtil.addErrorMessage("You are not the selected user.");
+        }
+        
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("Group1Updated"));

@@ -291,9 +291,9 @@
                     </h:panelGrid>
                 </p:tab>
             <p:tab title="My Group Info">
-                <h:panelGrid columns="2" cellpadding="10">
+                <h:panelGrid columns="2" cellpadding="10" >
                             <h:form id="MyGroupListForm">
-                                <p:panel header="My Groups">
+                                <p:panel header="My Groups" >
                                     <p:dataTable id="datalist" value="#{group1Controller.getGroupInfoFromUserID(user.id)}" var="item"
                                                  selectionMode="single" selection="#{group1Controller.selected}"
                                                  paginator="true"
@@ -327,8 +327,9 @@
                                             </f:facet>
                                             <h:outputText value="#{(userController.getUserEmailFromID(item.userID))}"/>
                                         </p:column>
-                                        <f:facet name="footer">
+                                        <f:facet name="footer" >
                                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{group1Controller.prepareCreate}" update=":GroupCreateForm" oncomplete="PF('GroupCreateDialog').show()"/>
+                                            <p:commandButton id="leaveButton" icon="ui-icon-plus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl"/>
                                         </f:facet>
                                     </p:dataTable>
                                 </p:panel>

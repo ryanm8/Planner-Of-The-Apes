@@ -83,15 +83,9 @@ public class Group1Controller implements Serializable {
             }
         }
         create();
-        System.out.println(selected.getId());
-        System.out.println(selected.getName());
         list = this.getGroupListFromUserID(user.getId());
         for (Group1 g : list) {
             if (g.getName().equals(selected.getName()) && g.getAdmin().equals(user.getPid())) {
-                System.out.println(g.getName());
-                System.out.println(g.getId());
-                System.out.println(selected.getId());
-                System.out.println(selected.getName());
                 selected = g;
                 selected.setGroupID(selected.getId());
                 selected.setGroupUserid(selected.getId());

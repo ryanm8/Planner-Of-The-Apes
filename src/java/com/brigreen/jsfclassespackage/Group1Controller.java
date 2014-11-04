@@ -69,9 +69,7 @@ public class Group1Controller implements Serializable {
     {
         selected.setAdmin(user.getPid());
         selected.setUserID(user.getId());
-        selected.setId(0);
-        selected.
-        
+        selected.setId(0);        
     }
 
     public void update() {

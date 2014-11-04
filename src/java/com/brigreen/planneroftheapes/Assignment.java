@@ -131,8 +131,6 @@ public class Assignment implements Serializable {
     @Transient
     //private String path = "C:\\Users\\Chris\\Desktop\\";
     private String path = "/home/CS4704/planneroftheapes/Documents/";
-    @Transient
-    private StreamedContent dlFile;
     
     public Assignment() {
     }
@@ -175,7 +173,7 @@ public class Assignment implements Serializable {
     
     public StreamedContent getDlFile() throws IOException
     {
-        if(!documentPath.equals("Add New Doc ?"))
+        if(!documentPath.equals("Add New Doc?"))
         {
             InputStream stream = null;
             try {
@@ -205,7 +203,7 @@ public class Assignment implements Serializable {
             {
                 System.out.println("FILE STILL THERE. NO GOOD.");
             }
-            documentPath = "Add new doc?";
+            documentPath = "Add New Doc?";
             
         }
     }

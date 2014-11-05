@@ -346,7 +346,7 @@
                                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{group1Controller.prepareCreate}" update=":GroupCreateForm" oncomplete="PF('GroupCreateDialog').show()"/>
                                             <p:commandButton id="leaveButton" icon="ui-icon-minus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl"/>
                                             <p:commandButton id="addButton" icon="ui-icon-plus"   value="Add Member" actionListener="#{group1Controller.addMember}" update=":GroupAddForm" oncomplete="PF('GroupAddDialog').show()"/>
-                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove User" actionListener="#{group1Controller.removeMember(user)}" update=":tview:MyGroupListForm:datalist,:growl"/>
+                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove User" actionListener="#{group1Controller.removeMemberPost(assignmentController.removeAssignmentsForMembers(group1Controller.removeMemberPre(user)))}" update=":tview:MyGroupListForm:datalist,:growl"/>
                                         </f:facet>
                                     </p:dataTable>
                                 </p:panel>

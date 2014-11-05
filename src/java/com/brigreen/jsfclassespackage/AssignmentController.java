@@ -112,13 +112,40 @@ public class AssignmentController implements Serializable {
 
     
     public void destroy() {
+        this.removeDocument();
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AssignmentDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    
+    public void destroyAll()
+    {
+        this.removeDocument();
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AssignmentDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            //items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
 
+    public int removeAssignmentsForMembers(int id)
+    {
+        if(id != 0)
+        {
+            items = this.getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.groupid.id LIKE :ID", "ID", id);
+            for(Assignment item : items)
+            {
+                selected = item;
+                destroyAll();
+            }
+            selected = null;
+            items = null;
+        }
+        return id;
+    }
+    
     public List<Assignment> getItems() {
         //if (items == null) {
             items = getFacade().findAll();

@@ -115,14 +115,27 @@ public class Group1Controller implements Serializable {
         selected = newGroup;
         create();
     }
-    
-    public void removeMember(User currentUser)
+    public void removeMemberPost(int groupid)
+    {
+        if (groupid != selected.getId())
+        {
+            JsfUtil.addErrorMessage("ERROR selected");
+        }
+        else
+        {
+            destroy();
+        }
+    }
+    public int removeMemberPre(User currentUser)
     {
         if(currentUser.getPid().equals(selected.getAdmin()))
         {
             if(selected.getUserID() != currentUser.getId())
             {
-                destroy();
+                //List<Integer> result = new ArrayList<Integer>();
+                //result.add(selected.getId());
+                //destroy();
+                return selected.getId();
             }
             else
             {
@@ -132,8 +145,8 @@ public class Group1Controller implements Serializable {
         else
         {
             JsfUtil.addErrorMessage("You're not the group admin.");
-            return;
         }
+        return 0;
 
     }
     

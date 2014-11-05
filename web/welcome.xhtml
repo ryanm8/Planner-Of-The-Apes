@@ -316,6 +316,8 @@
                                                  rows="10"
                                                  rowsPerPageTemplate="10,20,30,40,50"
                                                  >
+                                        <p:ajax event="rowSelect"   update="createButton leaveButton addButton removeButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton leaveButton addButton removeButton deleteButton"/>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Group Name"/>
@@ -344,9 +346,10 @@
                                         </p:column>
                                         <f:facet name="footer" >
                                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{group1Controller.prepareCreate}" update=":GroupCreateForm" oncomplete="PF('GroupCreateDialog').show()"/>
-                                            <p:commandButton id="leaveButton" icon="ui-icon-minus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl"/>
-                                            <p:commandButton id="addButton" icon="ui-icon-plus"   value="Add Member" actionListener="#{group1Controller.addMember}" update=":GroupAddForm" oncomplete="PF('GroupAddDialog').show()"/>
-                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove User" actionListener="#{group1Controller.removeMemberPost(assignmentController.removeAssignmentsForMembers(group1Controller.removeMemberPre(user)))}" update=":tview:MyGroupListForm:datalist,:growl"/>
+                                            <p:commandButton id="leaveButton" icon="ui-icon-minus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="addButton" icon="ui-icon-plus"   value="Add Member" actionListener="#{group1Controller.addMember}" update=":GroupAddForm" oncomplete="PF('GroupAddDialog').show()" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove Member" actionListener="#{group1Controller.removeMemberPost(assignmentController.removeAssignmentsForMembers(group1Controller.removeMemberPre(user)))}" update=":tview:MyGroupInfoListForm:datalist,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"   value="Delete Group" actionListener="#{group1Controller.deleteGroupPost(assignmentController.deleteAssignmentsForGroup(group1Controller.deleteGroupPre(user)))}" update=":tview:MyGroupInfoListForm:datalist,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
                                         </f:facet>
                                     </p:dataTable>
                                 </p:panel>

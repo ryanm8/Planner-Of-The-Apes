@@ -30,7 +30,7 @@ public class Group1Controller implements Serializable {
     private List<Group1> items = null;
     private Group1 selected;
     private User user;
-    private int counter = 15;
+    private int counter = 20;
 
     public Group1Controller() {
     }
@@ -119,7 +119,7 @@ public class Group1Controller implements Serializable {
     {
         if (groupid != selected.getId())
         {
-            JsfUtil.addErrorMessage("ERROR selected");
+            JsfUtil.addErrorMessage("Cannot Remove Member from Group");
         }
         else
         {
@@ -132,9 +132,6 @@ public class Group1Controller implements Serializable {
         {
             if(selected.getUserID() != currentUser.getId())
             {
-                //List<Integer> result = new ArrayList<Integer>();
-                //result.add(selected.getId());
-                //destroy();
                 return selected.getId();
             }
             else
@@ -148,6 +145,35 @@ public class Group1Controller implements Serializable {
         }
         return 0;
 
+    }
+    
+    public void deleteGroupPost(List<Group1> list)
+    {
+        if (list == null)
+        {
+            JsfUtil.addErrorMessage("Cannot Delete Group");
+        }
+        else
+        {
+            for(Group1 item : list)
+            {
+                selected = item;
+                destroy();
+            }
+        }
+    }
+    
+    public List<Group1> deleteGroupPre(User currentUser)
+    {
+        if(currentUser.getPid().equals(selected.getAdmin()))
+        {
+            return this.getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", selected.getGroupID());
+        }
+        else
+        {
+            JsfUtil.addErrorMessage("You're not the group admin.");
+        }
+        return null;
     }
     
     public void leaveGroup(User theUser)

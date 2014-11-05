@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<!--
+Created by Ryan Miller on 2014.11.04 
+Copyright © 2014 Ryan Miller. All rights reserved.
+-->
+    <ui:composition>
+
+        <p:dialog id="UserEditDlg" widgetVar="UserEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{user.pid}" rendered="true">
+            <h:form id="UserEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="true">
+                        <p:outputLabel value="First Name: " for="firstName" />
+                        <p:inputText id="firstName" value="#{usermanager.fname}" title="FirstName" required="true" requiredMessage="Please enter a first name"/>
+                        <p:outputLabel value="Last Name: " for="lastName" />
+                        <p:inputText id="lastName" value="#{usermanager.lname}" title="LastName" required="true" requiredMessage="Please enter a last name"/>
+                        <p:outputLabel value="Email: " for="email" />
+                        <p:inputText id="email" value="#{usermanager.email}" title="email" required="true" requiredMessage="Please enter an email" />                 
+                        <h:outputLabel for="password1" value="New Password: " />
+                        <h:inputSecret styleClass="loginField" id="password1"
+                                       value="#{usermanager.password}" redisplay="true"/>
+                        <h:outputLabel for="password2" value="Confirm New Password: " />
+                        <h:inputSecret styleClass="loginField" id="password2"
+                                                 value="#{usermanager.passwordv}" redisplay="true"/>
+                        <h:outputLabel for="password3" value="Current Password: *" />
+                        <h:inputSecret styleClass="loginField" id="password3"
+                                                 value="#{usermanager.currentPasswordv}" redisplay="true"/>
+                        <p:commandButton update="display" value="Save" action="#{usermanager.updateUserInformation(user.password, user.id)}"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

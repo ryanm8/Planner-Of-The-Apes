@@ -30,6 +30,7 @@
 
 package com.brigreen.jsfclassespackage;
 
+import com.brigreen.jsfclassespackage.util.JsfUtil;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +44,12 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import com.brigreen.planneroftheapes.User;
+import static com.sun.faces.facelets.util.Path.context;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 
 /**
  * <p>A simple managed bean to mediate between the user
@@ -75,6 +82,8 @@ public class UserManager {
     private String username;
     private String password;
     private String passwordv;
+    private String currentPassword;
+    private String currentPasswordv;
     private String fname;
     private String lname; 
     private String email;
@@ -105,6 +114,22 @@ public class UserManager {
         this.passwordv = passwordv;
     }
     
+    public String getCurrentPasswordv() {
+        return currentPasswordv;
+    }
+    
+    public void setCurrentPasswordv(String passwordv) {
+        this.currentPasswordv = passwordv;
+    }
+    
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+    
+    public void setCurrentPassword(String password) {
+        this.currentPassword = password;
+    }
+    
     public String getFname() {
         return fname;
     }
@@ -133,6 +158,74 @@ public class UserManager {
     // ---------------------------------------------------------- Public Methods
     
     
+    public void populate(User user)
+    {
+        setUsername(user.getPid());
+        setFname(user.getFirstName());
+        setLname(user.getLastName());
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        setPasswordv(user.getPassword());
+        setCurrentPassword(user.getPassword());
+        System.out.println("Populate: " + currentPassword);
+        
+    }
+    
+    public String updateUserInformation(String currentPassword, int id)
+    {
+        System.out.println("updateUserInformation");
+        System.out.println(currentPasswordv);
+        if (currentPasswordv != null && !currentPasswordv.equals(""))
+        {
+            FacesContext context = FacesContext.getCurrentInstance();
+            System.out.println(currentPassword);
+            User user = em.find(User.class, id);
+            if (currentPasswordv.equals(user.getPassword()))
+            {
+                System.out.println("currentPassword");
+                if (password.equals(passwordv))
+                {
+                    System.out.println("password");
+
+                    if (user == null)
+                    {
+                        System.out.println("User is NULL");
+                        return null;
+                    }
+                    user.setFirstName(fname);
+                    user.setLastName(lname);
+                    String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+                    if(!email.matches(EMAIL_REGEX))
+                    {
+                        FacesMessage message = new FacesMessage("Please enter a valid Email Address.");
+                        context.addMessage(null, message);
+                        return null;
+                    }
+                    user.setEmail(email);
+                    user.setPassword(password);
+                    try {
+                        utx.begin();
+                        em.merge(user);
+                        utx.commit();
+                        return logout();
+                    } catch (Exception ex) {
+                        Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+
+                }
+                else
+                {
+                    JsfUtil.addErrorMessage("New Passwords Do Not Match");
+                }
+            }
+            else
+            {
+                JsfUtil.addErrorMessage("Incorrect Password");
+            }
+        }
+        return null;
+    }
     /**
      * <p>Validates the user.  If the user doesn't exist or the password
      * is incorrect, the appropriate message is added to the current

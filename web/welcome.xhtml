@@ -54,6 +54,7 @@
             <f:view>
                 <h1><h:outputText value="Welcome to the Planner of the Apes" /></h1>
                 Welcome ${user.firstName} ${user.lastName}!  Your email is ${user.email}.
+                <p:commandButton id="editUserButton"   icon="ui-icon-pencil" value="Edit User" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()"  action="#{usermanager.populate(user)}" disabled="false"/>
                 
             </f:view>
             <p:tabView id="tview">
@@ -455,6 +456,7 @@
             <ui:include src="GroupAssignmentView.xhtml"/>
             <ui:include src="GroupCreate.xhtml"/>
             <ui:include src="GroupAdd.xhtml"/>
+            <ui:include src="UserEdit.xhtml"/>
                     </ui:define>
                 </ui:composition>
 </html>

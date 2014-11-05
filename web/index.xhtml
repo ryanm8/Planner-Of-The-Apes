@@ -47,12 +47,35 @@
     </h:head>
     <ui:composition template="/exteriorTemplate.xhtml">
         <ui:define name="body">
-            <p:graphicImage width="70%" style="margin:0 auto; display:block;" name="/images/indexPicture.png" />
+            <p:graphicImage width="90%" style="margin:0 auto; display:block;    border: 2px solid;
+    border-radius: 25px;" name="/images/indexPicture.png" />
             <div class="tp-bannershadow tp-shadow2" style="width: 70%; left: 0px;"></div>
             <div id="thin-text">
-                <p style="margin-top:0px;">Don't let your life go bananas</p>
-                <p> We'll help you take control today!</p>
+                <p style="margin-top:0px;">Don't let your life go bananas, we'll help you take control today!</p>
                 <br/>
+            </div>
+            <div id="columns">
+                <div id="column-left">
+                    <h4><p:graphicImage styleClass="alignleft" name="/images/Group.jpg"/>  Work with Groups!</h4>
+                    <p style="font-size:1.2em;">With Planner of the Apes you can schedule assignments and projects with groups. Create your own groups, add members, and collaborate!</p>
+                    
+                </div>
+                                <div id="column-center">
+                    <h4><p:graphicImage styleClass="alignleft" name="/images/Target.png"/>  Stay on Target!</h4>
+                    <p style="font-size:1.2em;">Planner Of The Apes has been proven to help you stay on target. Schedule your assignments and make sure you're on target from start to finish!</p>
+                    
+                </div>
+                                <div id="column-right">
+                    <h4><p:graphicImage styleClass="alignleft" name="/images/gameplan.png"/>  Make your Game-Plan!</h4>
+                    <p style="font-size:1.2em;">Planner of the Apes will sure you stay on your game-plan. Schedule reminders and be reminded when assignments are due. </p>
+
+                </div>
+                                <br/>
+                <br/>
+
+                 
+                <br/>
+
                 <br/>
             </div>
         </ui:define>

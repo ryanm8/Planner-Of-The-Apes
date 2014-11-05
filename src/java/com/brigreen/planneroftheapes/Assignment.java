@@ -127,9 +127,9 @@ public class Assignment implements Serializable {
     @ManyToOne
     private Group1 groupid;
     @Transient
-    private UploadedFile file;
+    private UploadedFile file = null;
     @Transient
-    private String path = "C:\\Users\\Chris\\Desktop\\";
+    private String path = "C:\\Users\\Ryan\\Desktop\\";
     //private String path = "/home/CS4704/planneroftheapes/Documents/";
     
     public Assignment() {
@@ -213,8 +213,8 @@ public class Assignment implements Serializable {
             removeDocument();
         }
         if(file != null) {
-            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            //FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
+            //FacesContext.getCurrentInstance().addMessage(null, message);
             documentPath = file.getFileName();
              try {
              copyFile(file.getFileName(), file.getInputstream());

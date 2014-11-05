@@ -52,12 +52,10 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="body">
             <f:view>
-                <h1><h:outputText value="Welcome to the Planner of the Apes" /></h1>
-                Welcome ${user.firstName} ${user.lastName}!  Your email is ${user.email}.
+                <h1><h:outputText value="Welcome to the Planner of the Apes, ${user.firstName} ${user.lastName}!" /></h1>
                 <p:commandButton id="editUserButton"   icon="ui-icon-pencil" value="Edit User" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()"  action="#{usermanager.populate(user)}" disabled="false"/>
-                
             </f:view>
-            <p:tabView id="tview">
+            <p:tabView id="tview" style="border:0px; margin-top:-50px;">
             <p:tab title="Personal Assignments">
                 <h:panelGrid columns="2" cellpadding="10">
                             <h:form id="AssignmentListForm">
@@ -142,18 +140,19 @@
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
-                            <h:form enctype="multipart/form-data" id="up">
+                            <h:form enctype="multipart/form-data" id="up" style="margin-top:-50px;">
+                                <h2>File Manager</h2>
                                 <p:growl id="messages" showDetail="true" />
                                 <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
                                 <p:commandButton value="Submit" id="submitButton" ajax="false" actionListener="#{assignmentController.upload}" disabled="#{empty assignmentController.selected}" />
                             </h:form>
-                            <h:form id="down">
+                            <h:form id="down" style="float:right; margin-top:-60px;margin-right:-120px;">
                                 <p:commandButton value="Download" id="downloadButton" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s" disabled="#{empty assignmentController.selected}">
                             <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
                         </p:commandButton>
                     </h:form>
-                    <h:form id="remove">
-                            <p:commandButton value="Remove Attached File" id="dlRemove" ajax="false" onclick="#{assignmentController.removeDocument()}" icon="ui-icon-trash" disabled="#{empty assignmentController.selected}"/>
+                    <h:form id="remove" style="float:left; margin-top:-100px;">
+                            <p:commandButton value="Remove Attached File" id="dlRemove" ajax="false" style="margin-left:-00%;" onclick="#{assignmentController.removeDocument()}" icon="ui-icon-trash" disabled="#{empty assignmentController.selected}"/>
                     </h:form>
                 </h:panelGrid>   
             </p:tab>
@@ -290,18 +289,20 @@
                                     </f:facet>
                                 </p:dataTable>
                             </p:panel>
-                        </h:form>
-                        <h:form enctype="multipart/form-data" id="upG">
+                        </h:form>                        
+                        <h:form enctype="multipart/form-data" id="upG" style="margin-top:-50px;">
+                                                            <h2>File Manager</h2>
+
                             <p:growl id="messages" showDetail="true" />
                             <p:fileUpload value="#{assignmentController.selected.file}" mode="simple"/>
                             <p:commandButton value="Submit" id="submitButton" ajax="false" actionListener="#{assignmentController.upload}" disabled="#{empty assignmentController.selected}" />
                         </h:form>
-                        <h:form id="downG">
+                        <h:form id="downG" style="float:right; margin-top:-60px;margin-right:-120px;">
                         <p:commandButton value="Download" id="downloadButton" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s" disabled="#{empty assignmentController.selected}">
                             <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
                         </p:commandButton>
                     </h:form>
-                        <h:form id="removeG">
+                        <h:form id="removeG" style="float:left; margin-top:-100px;">
                             <p:commandButton value="Remove Attached File" id="dlRemove" ajax="false" onclick="#{assignmentController.removeDocument()}" icon="ui-icon-trash" disabled="#{empty assignmentController.selected}"/>
                     </h:form>
                     </h:panelGrid>
@@ -317,6 +318,8 @@
                                                  rows="10"
                                                  rowsPerPageTemplate="10,20,30,40,50"
                                                  >
+                                        <p:ajax event="rowSelect"   update="createButton leaveButton addButton removeButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton leaveButton addButton removeButton deleteButton"/>
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Group Name"/>
@@ -345,9 +348,10 @@
                                         </p:column>
                                         <f:facet name="footer" >
                                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{group1Controller.prepareCreate}" update=":GroupCreateForm" oncomplete="PF('GroupCreateDialog').show()"/>
-                                            <p:commandButton id="leaveButton" icon="ui-icon-minus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl"/>
-                                            <p:commandButton id="addButton" icon="ui-icon-plus"   value="Add Member" actionListener="#{group1Controller.addMember}" update=":GroupAddForm" oncomplete="PF('GroupAddDialog').show()"/>
-                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove User" actionListener="#{group1Controller.removeMemberPost(assignmentController.removeAssignmentsForMembers(group1Controller.removeMemberPre(user)))}" update=":tview:MyGroupListForm:datalist,:growl"/>
+                                            <p:commandButton id="leaveButton" icon="ui-icon-minus"   value="Leave Group" actionListener="#{group1Controller.leaveGroup(user)}" update=":tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="addButton" icon="ui-icon-plus"   value="Add Member" actionListener="#{group1Controller.addMember}" update=":GroupAddForm" oncomplete="PF('GroupAddDialog').show()" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="removeButton" icon="ui-icon-trash"   value="Remove Member" actionListener="#{group1Controller.removeMemberPost(assignmentController.removeAssignmentsForMembers(group1Controller.removeMemberPre(user)))}" update=":tview:MyGroupInfoListForm:datalist,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"   value="Delete Group" actionListener="#{group1Controller.deleteGroupPost(assignmentController.deleteAssignmentsForGroup(group1Controller.deleteGroupPre(user)))}" update=":tview:MyGroupInfoListForm:datalist,:tview:MyGroupAssignmentListForm:datalist,:tview:MyGroupListForm:datalist,:growl" disabled="#{empty group1Controller.selected}"/>
                                         </f:facet>
                                     </p:dataTable>
                                 </p:panel>

@@ -7,9 +7,8 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="ReminderViewDlg" widgetVar="ReminderViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRemindersTitle}">
-            <h:form id="ReminderViewForm">
+            <h:form style="cursor: url(/Planner-Of-The-Apes/faces/javax.faces.resource/images/pointerBanana.png), auto;" id="ReminderViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{remindersController.selected != null}">
                         <h:outputText value="#{bundle.ViewRemindersLabel_date}"/>

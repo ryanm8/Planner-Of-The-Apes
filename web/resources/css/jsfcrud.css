@@ -185,3 +185,33 @@ font-size: 0px;
 line-height: 0px;
 border-radius: 2px;
 }
+
+#south{
+position: absolute;
+margin: 0px;
+top: auto;
+width: auto;
+z-index: 0;
+bottom: 0px;
+left: 0px;
+right: 0px;
+height: 44px;
+display: block;
+visibility: visible;
+background-image: url(/Planner-Of-The-Apes/faces/javax.faces.resource/images/footerBanana.png);
+background-repeat: repeat-x;
+}
+
+.ui-tabs-nav
+{
+    margin-left:22px!important;
+    border:0px!important;
+    background-color:white!important;
+}
+
+#j_idt15
+{
+    height:123px!important;
+    margin-left:.74%!important;
+    margin-right:.74%!important;
+}

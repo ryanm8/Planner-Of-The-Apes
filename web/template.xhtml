@@ -11,9 +11,7 @@
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
-
-    <h:body>
-
+    <h:body style="cursor: url(/Planner-Of-The-Apes/faces/javax.faces.resource/images/pointerBanana.png), auto;background-image: url(/Planner-Of-The-Apes/faces/javax.faces.resource/images/gray.png);">
         <p:growl id="growl" life="3000" />
         <div id="fullPage">
         <p:layout style="width:95% !important; height:800px;margin: 0 auto !important;background-image: url(http://www.cloudfrontgroup.com/wp-content/themes/wpex-impact/images/bgs/gray_jean.png);">
@@ -25,20 +23,16 @@
                 </p:graphicImage></h:link>
                 </div>
                 <h:form id="menuForm">
-                    <p:menubar>
+                    <p:menubar style="background-color:#FEF07C;">
                         <p:menuitem value="#{bundle.Home}" outcome="/welcome.xhtml" icon="ui-icon-home"/>
                         <p:menuitem action="#{usermanager.logout}" value="Log Out" icon="ui-icon-power"></p:menuitem>
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
-
             <p:layoutUnit position="center">
                 <ui:insert name="body"/>
             </p:layoutUnit>
-
+                        <div id="south" />
         </p:layout>
         </div>
 

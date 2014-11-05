@@ -12,11 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/resources/css/jsfcrud.css</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/src/java/com/brigreen/jsfclassespackage/ResizableView.java</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/createAccountTemplate.xhtml</file>
             <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/exteriorTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/RemindersView.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/create.xhtml</file>
             <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/template.xhtml</file>
-            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/welcome.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/loginTemplate.xhtml</file>
+            <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/login.xhtml</file>
             <file>file:/Users/Koorosh/Planner-Of-The-Apes/web/index.xhtml</file>
         </group>
     </open-files>

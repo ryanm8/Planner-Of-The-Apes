@@ -12,8 +12,7 @@
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
 
-    <h:body>
-
+    <h:body style="background-image: url(/Planner-Of-The-Apes/faces/javax.faces.resource/images/gray.png);">
         <p:growl id="growl" life="3000" />
         <div id="fullPage">
         <p:layout style="width:95% !important; height:800px;margin: 0 auto !important;background-image: url(http://www.cloudfrontgroup.com/wp-content/themes/wpex-impact/images/bgs/gray_jean.png);">
@@ -31,14 +30,10 @@
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
-
             <p:layoutUnit position="center">
                 <ui:insert name="body"/>
             </p:layoutUnit>
-
+                        <div id="south" />
         </p:layout>
         </div>
 

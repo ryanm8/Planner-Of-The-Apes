@@ -6,6 +6,7 @@ import com.brigreen.jsfclassespackage.util.JsfUtil.PersistAction;
 import com.brigreen.planneroftheapes.User;
 import com.brigreen.planneroftheapes.Group1;
 import com.brigreen.sessionbeanpackage.AssignmentFacade;
+import java.io.File;
 import java.io.IOException;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.model.UploadedFile;
 
 @ManagedBean(name="assignmentController")
 @Named("assignmentController")
@@ -102,17 +104,23 @@ public class AssignmentController implements Serializable {
      }
      
     public void upload() {
-        if (selected.getFile() != null)
+        if (selected != null)
         {
-            try {
-                selected.upload();
-                persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
-            } catch (IOException ex) {
-                Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+            if (!selected.getFile().getFileName().equals(""))
+            {
+                try {
+                    selected.upload();
+                    persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
+                } catch (IOException ex) {
+                    Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            
+            else
+            {
+                JsfUtil.addErrorMessage("Please select a file to upload.");
+                selected.setFile(null);
+            }
         }
-        
     }
 
     

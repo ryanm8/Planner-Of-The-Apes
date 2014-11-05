@@ -53,8 +53,8 @@
         <ui:define name="body">
             <f:view>
                 <h1><h:outputText value="Welcome to the Planner of the Apes, ${user.firstName} ${user.lastName}!" /></h1>
-                <p:commandButton id="editUserButton"   icon="ui-icon-pencil" value="Edit User" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()"  action="#{usermanager.populate(user)}" disabled="false"/>
             </f:view>
+            
             <p:tabView id="tview" style="border:0px; margin-top:-50px;">
             <p:tab title="Personal Assignments">
                 <h:panelGrid columns="2" cellpadding="10">
@@ -449,6 +449,9 @@
                 </h:panelGrid>
             </p:tab>
         </p:tabView>
+                <h:form>
+                <p:commandButton id="editUserButton"   icon="ui-icon-pencil" value="Edit User" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()"  action="#{usermanager.populate(user)}" disabled="false"/>
+                </h:form>
             <ui:include src="RemindersCreate.xhtml"/>
             <ui:include src="RemindersEdit.xhtml"/>
             <ui:include src="RemindersView.xhtml"/>

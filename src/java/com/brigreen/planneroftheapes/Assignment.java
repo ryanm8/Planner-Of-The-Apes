@@ -129,8 +129,9 @@ public class Assignment implements Serializable {
     @Transient
     private UploadedFile file = null;
     @Transient
-    //private String path = "C:\\Users\\Ryan\\Desktop\\";
     private String path = "/home/CS4704/planneroftheapes/Documents/";
+    @Transient
+    private String filesep = "/";
     
     public Assignment() {
     }
@@ -177,8 +178,7 @@ public class Assignment implements Serializable {
         {
             InputStream stream = null;
             try {
-                String thispath = path + id + "/" + documentPath;
-                //String thispath = path + id + "\\" + documentPath;
+                String thispath = path + id + filesep + documentPath;
                 File f = new File(thispath);
                 stream = new FileInputStream(f);
                 return new DefaultStreamedContent(stream, Files.probeContentType(Paths.get(thispath)), documentPath);
@@ -193,8 +193,7 @@ public class Assignment implements Serializable {
     {
         if (file != null || !documentPath.equals("Add New Doc?"))
         {
-            File newFile = new File(path + id + "/" + documentPath);
-            //File newFile = new File(path + id + "\\" + documentPath);
+            File newFile = new File(path + id + filesep + documentPath);
             if (newFile.delete())
             {
                 System.out.println("FILE DELETED GOOD JOB!");
@@ -229,8 +228,7 @@ public class Assignment implements Serializable {
         // write the inputStream to a FileOutputStream
         try {
         String tempFileName = path + id;
-        String newFileName = path + id + "/" + fileName;
-        //String newFileName = path + id + "\\" + fileName;
+        String newFileName = path + id + filesep + fileName;
         File tempFile = new File(tempFileName);
         tempFile.mkdirs();
         OutputStream out = new FileOutputStream(new File(newFileName));

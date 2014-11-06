@@ -87,14 +87,18 @@ public class Group1Controller implements Serializable {
         for (Group1 g : list) {
             if (g.getName().equals(selected.getName()) && g.getAdmin().equals(user.getPid())) {
                 selected = g;
-                selected.setGroupID(selected.getId());
-                selected.setGroupUserid(selected.getId());
+                selected.setGroupID(selected.getId()); //Fix group ID number
+                selected.setGroupUserid(selected.getId()); //Fix group User Id
                 update();
                 return;
             }
         }
     }
     
+    /**
+     * Adds a member to a group if you have the right permissions
+     * @param newUser The current user.
+     */
     public void addMember(User newUser)
     {
         List<Group1> list = this.getGroupListFromUserID(newUser.getId());
@@ -115,6 +119,11 @@ public class Group1Controller implements Serializable {
         selected = newGroup;
         create();
     }
+    /**
+     * The Post action to remove a user from a group. Removes the group entry
+     * in the database.
+     * @param groupid Takes the group id of the entry.
+     */
     public void removeMemberPost(int groupid)
     {
         if (groupid != selected.getId())
@@ -126,6 +135,14 @@ public class Group1Controller implements Serializable {
             destroy();
         }
     }
+    
+    /**
+     * The Pre action to remove a user from a group, passes the return to the 
+     * assignment controller to remove assignments for the group entry before
+     * removing the group entry.
+     * @param currentUser The currently logged on user
+     * @return The id of the group entry.
+     */
     public int removeMemberPre(User currentUser)
     {
         if(currentUser.getPid().equals(selected.getAdmin()))
@@ -147,6 +164,10 @@ public class Group1Controller implements Serializable {
 
     }
     
+    /**
+     * Delete Group Post call - removes all group entries for a group
+     * @param list List of group entries to remove.
+     */
     public void deleteGroupPost(List<Group1> list)
     {
         if (list == null)
@@ -163,6 +184,13 @@ public class Group1Controller implements Serializable {
         }
     }
     
+    /**
+     * Delete Group Pre Action - Finds all the group entries that need to be 
+     * deleted to remove the group and then returns that value so the
+     * assignment controller can remove the associated assignments.
+     * @param currentUser The currently logged on user
+     * @return List of group entries to be deleted
+     */
     public List<Group1> deleteGroupPre(User currentUser)
     {
         if(currentUser.getPid().equals(selected.getAdmin()))
@@ -176,10 +204,15 @@ public class Group1Controller implements Serializable {
         return null;
     }
     
+    /**
+     * Removes the current user from a particular group.
+     * @param theUser The currently logged on user
+     */
     public void leaveGroup(User theUser)
     {
         if(selected.getUserID() == theUser.getId() && !selected.getAdmin().equals(theUser.getPid()))
         {
+            //Not Admin and selected yourself in the group.
             destroy();
         }
         else if(selected.getAdmin().equals(theUser.getPid()))
@@ -252,31 +285,46 @@ public class Group1Controller implements Serializable {
         return getFacade().findAll();
     }
     
+    /**
+     * Returns Group Name from groupid number
+     * @param groupId Group id number
+     * @return Group Name
+     */
     public String getGroupNameFromID(int groupId) 
     {
-    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", groupId);
-    items = myItems;
-    return myItems.get(0).getName();
+        List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", groupId);
+        items = myItems;
+        return myItems.get(0).getName();
     }
     
+    /**
+     * Returns a list of Group entries for a particular user
+     * @param userId The user id
+     * @return A list of group entries for that user
+     */
     public List<Group1> getGroupInfoFromUserID(int userId) 
     {
-    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
-    items = myItems;
-    List<Group1> groupinfo = new ArrayList<Group1>();
-    
-    for (Group1 group: myItems)
-    {
-        groupinfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", group.getGroupID()));
-    }
-    return groupinfo;
+        List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
+        items = myItems;
+        List<Group1> groupinfo = new ArrayList<Group1>();
+
+        for (Group1 group: myItems)
+        {
+            groupinfo.addAll(getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.groupID LIKE :ID", "ID", group.getGroupID()));
+        }
+        return groupinfo;
     }
 
+    /**
+     * Returns the group entries for a particular user.
+     * @param userId The user id of the current user
+     * @return  List of group entries for that user.
+     */
     public List<Group1> getGroupListFromUserID(int userId) 
     {
-    List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
-    items = myItems;
-    return items;
+        List<Group1> myItems = getFacade().findByQueryOneParam("SELECT a FROM Group1 a WHERE a.userID LIKE :ID", "ID", userId);
+        items = myItems;
+        return items;
     }
     
     @FacesConverter(forClass = Group1.class)

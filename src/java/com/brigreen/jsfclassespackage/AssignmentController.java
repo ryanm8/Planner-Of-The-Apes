@@ -63,6 +63,9 @@ public class AssignmentController implements Serializable {
         return selected;
     }
 
+    /**
+     *  Creates an Assignment for a personal user.
+     */
     public void create() {
         selected.setAssigneeID(user);
         selected.setId(0);
@@ -75,10 +78,12 @@ public class AssignmentController implements Serializable {
         }
     }
     
+    /**
+     *  Creates an Assignment for a user associated with a Group
+     */
     public void createGroupAssign() {
         selected.setAssigneeID(user);
         selected.setId(0);
-        //selected.setGroupid(null);
         selected.setDocumentsid(null);
         selected.setDocumentPath("Add New Doc?");
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentCreated"));
@@ -90,7 +95,10 @@ public class AssignmentController implements Serializable {
      public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AssignmentUpdated"));
     }
-
+     
+     /**
+      *  Deleted document for selected file.
+      */
      public void removeDocument()
      {
          if (selected != null)
@@ -125,7 +133,7 @@ public class AssignmentController implements Serializable {
 
     
     public void destroy() {
-        this.removeDocument();
+        this.removeDocument(); //Removed the physical file before database.
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AssignmentDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
@@ -184,11 +192,21 @@ public class AssignmentController implements Serializable {
         user = guy;
     }
     
+    /**
+     * Returns list of individual Assignments for given AssigneeId
+     * @param assigneeId The id for the assignee
+     * @return List of Assignments
+     */
     public List<Assignment> getItemsByAssignee(int assigneeId) {
         items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID AND a.groupid IS NULL ORDER BY a.dueDate", "ID", assigneeId);
         return items;
     }
     
+    /**
+     * Returns list of group Assignments for given AssigneeId
+     * @param assigneeId The id for the assignee
+     * @return List of Assignments
+     */
     public List<Assignment> getItemsByGroup(int assigneeId) {
         items = getFacade().findByQueryOneParam("SELECT a FROM Assignment a WHERE a.assigneeID.id LIKE :ID  AND a.groupid IS NOT NULL ORDER BY a.groupid ASC", "ID", assigneeId);
         return items;

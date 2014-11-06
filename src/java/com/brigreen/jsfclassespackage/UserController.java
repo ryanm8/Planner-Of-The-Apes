@@ -123,16 +123,16 @@ public class UserController implements Serializable {
     
     public String getUserNameFromID(int userId) 
     {
-    List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
-    items = myItems;
-    return (myItems.get(0).getFirstName() + " " + myItems.get(0).getLastName()) ;
+        List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
+        items = myItems;
+        return (myItems.get(0).getFirstName() + " " + myItems.get(0).getLastName()) ;
     }
 
     public String getUserEmailFromID(int userId) 
     {
-    List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
-    items = myItems;
-    return (myItems.get(0).getEmail()) ;
+        List<User> myItems = getFacade().findByQueryOneParam("SELECT a FROM User a WHERE a.id LIKE :ID", "ID", userId);
+        items = myItems;
+        return (myItems.get(0).getEmail());
     }
     
     public User getUserFromPID(String pid) {

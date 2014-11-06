@@ -28,6 +28,10 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ *  Original Code take from Netbeans Sample Jsf Jpa for Jave EE and modified
+ * for the purposes of our project
+ */
 package com.brigreen.jsfclassespackage;
 
 import java.io.IOException;

@@ -172,6 +172,11 @@ public class Assignment implements Serializable {
         file = newFile;
     }
     
+    /**
+     * Streams the file to the client from the server for download
+     * @return The download.
+     * @throws IOException 
+     */
     public StreamedContent getDlFile() throws IOException
     {
         if(!documentPath.equals("Add New Doc?"))
@@ -189,6 +194,9 @@ public class Assignment implements Serializable {
         return null;
     }
     
+    /**
+     * Removes document from assignment
+     */
     public void removeDocument()
     {
         if (file != null || !documentPath.equals("Add New Doc?"))
@@ -206,6 +214,11 @@ public class Assignment implements Serializable {
             
         }
     }
+    
+    /**
+     * Uploads file to server for Assignment
+     * @throws IOException 
+     */
     public void upload() throws IOException{
         if (!documentPath.equals("Add New Doc?"))
         {
@@ -232,18 +245,7 @@ public class Assignment implements Serializable {
         File tempFile = new File(tempFileName);
         tempFile.mkdirs();
         OutputStream out = new FileOutputStream(new File(newFileName));
-
-        
-//        ExternalContext tmpEC;
-//        Map sMap;
-//        tmpEC = FacesContext.getCurrentInstance().getExternalContext();
-//        sMap = tmpEC.getSessionMap();
-//        AssignmentController asgController = (AssignmentController) sMap.get("assignmentController");
-//        Assignment asg1 = asgController.getAssignment(Integer.parseInt(asg));
-//        asg1.setDocumentPath(asg + "\\" + fileName);
-//        asgController.setSelected(asg1);
-//        asgController.update();
-        
+      
         int read = 0;
         byte[] bytes = new byte[1024];
 

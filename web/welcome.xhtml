@@ -449,7 +449,7 @@
                                     </p:dataTable>
                                 </p:panel>
                             </h:form>
-                            <h:form id="downAllG" style="float:right; margin-top:-60px;margin-right:-120px;">
+                            <h:form id="downAllG" style="float: left;margin-top: -300px!important;margin-left: -250px!important;">
                         <p:commandButton value="Download" id="downloadButton" ajax="false" onclick="" icon="ui-icon-arrowthick-1-s" disabled="#{empty assignmentController.selected}">
                             <p:fileDownload value="#{assignmentController.selected.getDlFile()}" />
                         </p:commandButton>
@@ -457,7 +457,7 @@
                 </h:panelGrid>
             </p:tab>
         </p:tabView>
-                <h:form>
+                <h:form style="margin-left:50px;">
                 <p:commandButton id="editUserButton"   icon="ui-icon-pencil" value="Edit User Settings" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()"  action="#{usermanager.populate(user)}" disabled="false"/>
                 </h:form>
             <ui:include src="RemindersCreate.xhtml"/>

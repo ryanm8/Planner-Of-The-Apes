@@ -28,6 +28,11 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ *  Original Code take from Netbeans Sample Jsf Jpa for Jave EE and modified
+ * for the purposes of our project
+ */
+
 package com.brigreen.jsfclassespackage;
 
 import com.brigreen.jsfclassespackage.util.JsfUtil;
@@ -157,7 +162,10 @@ public class UserManager {
     
     // ---------------------------------------------------------- Public Methods
     
-    
+    /**
+     * Called to allow for the editing of User settings.
+     * @param user The currently logged on user.
+     */
     public void populate(User user)
     {
         setUsername(user.getPid());
@@ -166,30 +174,28 @@ public class UserManager {
         setEmail(user.getEmail());
         setPassword(user.getPassword());
         setPasswordv(user.getPassword());
-        setCurrentPassword(user.getPassword());
-        System.out.println("Populate: " + currentPassword);
-        
+        setCurrentPassword(user.getPassword());   
     }
     
+    /**
+     * Updates the current user settings
+     * @param currentPassword Current password for the user - difficulty getting
+     *         it any other way than directly.
+     * @param id The user id
+     * @return Returns result of logout or null to redirect
+     */
     public String updateUserInformation(String currentPassword, int id)
     {
-        System.out.println("updateUserInformation");
-        System.out.println(currentPasswordv);
         if (currentPasswordv != null && !currentPasswordv.equals(""))
         {
             FacesContext context = FacesContext.getCurrentInstance();
-            System.out.println(currentPassword);
             User user = em.find(User.class, id);
             if (currentPasswordv.equals(user.getPassword()))
             {
-                System.out.println("currentPassword");
                 if (password.equals(passwordv))
                 {
-                    System.out.println("password");
-
                     if (user == null)
                     {
-                        System.out.println("User is NULL");
                         return null;
                     }
                     user.setFirstName(fname);
@@ -211,8 +217,6 @@ public class UserManager {
                     } catch (Exception ex) {
                         Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-
                 }
                 else
                 {

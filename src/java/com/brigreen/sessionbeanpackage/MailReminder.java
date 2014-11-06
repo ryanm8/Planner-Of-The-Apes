@@ -34,10 +34,10 @@ public class MailReminder {
     
     @PersistenceContext 
     private EntityManager em;
-    
-    @Resource 
-    //private TransactionManager tx;
 
+    /**
+     * Send Reminders automatically at 1:20pm server time
+     */
     @Schedule(dayOfWeek = "*", month = "*", hour = "13", dayOfMonth = "*", year = "*", minute = "20", second = "0", persistent = false) 
     public void myTimer() {
         DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -53,9 +53,13 @@ public class MailReminder {
         }
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
+    /**
+     * Sends email from reminder.
+     * @param name - Who the email is being sent to
+     * @param subject - The subject of the method
+     * @param email - The user's email
+     * @param body - The reminder to be sent.
+     */
     public void businessMethod(String name, String subject, String email, String body) {
         final String username = "planneroftheapes@gmail.com";
 		final String password = "monkeymonkey123";
@@ -81,7 +85,7 @@ public class MailReminder {
 				InternetAddress.parse(email));
 			message.setSubject("Reminder from Planner of the Apes: " + subject);
 			message.setText("Hello " + name + ","
-				+ "\n\n Planner of the Apes just wanted to remind you that:"
+				+ "\n\n Planner of the Apes just wanted to remind you that:\n"
                                 + "\n\t" + "\""+ body +"\"");
  
 			Transport.send(message);

@@ -44,6 +44,15 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
     
+    /**
+     * Executes an arbitrary query to the table associated with the Facade.
+     * Replaces one variable in the query with the given value.
+     * 
+     * @param query String representing the desired db query
+     * @param varName The name of the variable to be replaced in the query
+     * @param varValue The value with which to replace the variable
+     * @return The list of values returned by the db query
+     */
     public List<T> findByQueryOneParam(String query, String varName, Object varValue) {
         return getEntityManager().createQuery(query).setParameter(varName, varValue).getResultList();
     }

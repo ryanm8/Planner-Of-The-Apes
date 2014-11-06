@@ -133,6 +133,14 @@ public class AssignmentController implements Serializable {
         }
     }
 
+    /**
+     * Finds all assignments belonging to the group with GroupId id, and removes
+     * each of those assignments from the Assignments table.
+     * 
+     * @param id the GroupId of the group for which all assignments must be
+     *          removed for the User.
+     * @return the GroupId of the group for which all assignments were removed.
+     */
     public int removeAssignmentsForMembers(int id)
     {
         if(id != 0)
@@ -147,6 +155,13 @@ public class AssignmentController implements Serializable {
         return id;
     }
     
+    /**
+     * Deletes the assignments associated with each group present in the given
+     * list.
+     * 
+     * @param list the list of groups for which to delete all assignments
+     * @return the list of groups after the assignments have been deleted.
+     */
     public List<Group1> deleteAssignmentsForGroup(List<Group1> list)
     {
         if (list != null)
@@ -160,9 +175,7 @@ public class AssignmentController implements Serializable {
     }
     
     public List<Assignment> getItems() {
-        //if (items == null) {
-            items = getFacade().findAll();
-        //}
+        items = getFacade().findAll();
         return items;
     }
     
@@ -181,6 +194,14 @@ public class AssignmentController implements Serializable {
         return items;
     }
     
+    /**
+     * Returns the list of assignments associated with each group in the list
+     * of groups given.
+     * 
+     * @param groupObject the list of all groups for which to get assignments.
+     * @return list of assignments associated with any groups in the given list
+     *          of groups
+     */
     public List<Assignment> getGroupItemsByGroupObject(List<Group1> groupObject) 
     {
         List<Assignment> assignmentInfo = new ArrayList<Assignment>();
@@ -191,15 +212,6 @@ public class AssignmentController implements Serializable {
         }
         return assignmentInfo;
     }
-    
-    public List<Assignment> getItemsArbitraryQuery(String query) {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
-        return items;
-    }
-    
-    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
